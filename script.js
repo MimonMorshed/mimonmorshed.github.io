@@ -120,7 +120,7 @@ class Navigation {
 // INITIALIZE EVERYTHING
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌊 Initializing Ocean Research Website...');
+    console.log('🌊 Initializing site...');
    
     new CustomCursor();
     new Card3DEffect();
