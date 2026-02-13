@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Front Impacts — Mimon Morsheduzzaman</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Ocean Effects Canvas -->
+    <canvas id="ocean-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-brand">← Back to Home</a>
+                <div class="nav-links">
+                    <a href="index.html#research" class="nav-link">Research</a>
+                    <a href="index.html#publications" class="nav-link">Publications</a>
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         PROJECT HEADER
+         Edit: Title, subtitle, timeline
+         ============================================ -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="container">
+            <h1 class="name" style="font-size: clamp(2rem, 4vw, 3rem);">Cold Front Impacts on Shelf Circulation</h1>
+            <p class="subtitle">Investigating Atmospheric Forcing Effects on Continental Shelf Dynamics</p>
+            <p class="institution">Gulf of Mexico • Louisiana State University</p>
+            
+            <div class="info-card" style="margin-top: var(--space-xl);">
+                <div class="info-item">
+                    <div class="info-label">Timeline</div>
+                    <div class="info-value">Fall 2024 – Present</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Location</div>
+                    <div class="info-value">Northern Gulf of Mexico Shelf</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Collaborators</div>
+                    <div class="info-value">Dr. Chunyan Li, WAVCIS Lab</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Funding</div>
+                    <div class="info-value">LSU Oceanography & Coastal Sciences</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROJECT OVERVIEW
+         Edit: Description, objectives
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Overview</h2>
+                
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-md);">
+                    Atmospheric cold fronts are synoptic-scale weather systems that frequently traverse the Gulf of Mexico during fall and winter months. This research investigates how these meteorological events influence continental shelf circulation, with particular focus on shelf response mechanisms, transport processes, and ecological implications.
+                </p>
+
+                <h3 style="margin-top: var(--space-lg); margin-bottom: var(--space-md);">Research Questions</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        How do cold front passages modify surface and subsurface current patterns on the shelf?
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        What are the timescales of shelf response to atmospheric forcing events?
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        How does front intensity and propagation speed affect circulation changes?
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md);">
+                        What are the implications for coastal transport and marine operations?
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         METHODOLOGY
+         Edit: Methods description
+         ============================================ -->
+    <section class="section section-alt">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Methodology</h2>
+                
+                <h3 style="margin-bottom: var(--space-md);">Observational Data</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-lg);">
+                    • <strong>HF Radar:</strong> Surface current measurements from WAVCIS network<br>
+                    • <strong>Meteorological Data:</strong> Wind speed, direction, and atmospheric pressure from NOAA stations<br>
+                    • <strong>Satellite Observations:</strong> Sea surface temperature and wind fields<br>
+                    • <strong>In-situ Measurements:</strong> ADCP profiles and CTD casts from field campaigns
+                </p>
+
+                <h3 style="margin-bottom: var(--space-md);">Analysis Approach</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-md);">
+                    Cold front events are identified using meteorological criteria (wind shifts, pressure changes). For each event, we analyze:<br><br>
+                    • Pre-front, during-front, and post-front circulation patterns<br>
+                    • Response timescales and spatial extent of shelf adjustments<br>
+                    • Correlation between front characteristics and circulation changes<br>
+                    • Composite analysis across multiple cold front events
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FIELD CAMPAIGNS
+         Edit: Add field work details
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Field Campaigns</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">October 2024</div>
+                        <h3>Fall 2024 Cold Front Campaign</h3>
+                        <div class="timeline-org">Northern Gulf of Mexico</div>
+                        <p>Intensive observational campaign targeting cold front passages. Deployed additional instrumentation and conducted shipboard measurements to capture shelf response to atmospheric forcing events.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 2024</div>
+                        <h3>Data Recovery & Analysis</h3>
+                        <div class="timeline-org">WAVCIS Lab, LSU</div>
+                        <p>Retrieved deployed instruments and began preliminary data processing. Identified several strong cold front events suitable for detailed analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FIGURES & RESULTS
+         Images: images/coldfront-fig1.jpg, coldfront-fig2.jpg, etc.
+         Edit: Add your figures, update captions
+         ============================================ -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Figures & Analysis</h2>
+            
+            <div class="research-grid" style="margin-top: var(--space-xl);">
+                <!-- Figure 1 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/coldfront-fig1.jpg" alt="Cold Front Passage"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/coldfront-fig1.jpg<br>Satellite image of cold front<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 1: Cold Front Event</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Satellite composite showing a strong cold front approaching the Gulf of Mexico coast, with associated wind field changes and cloud patterns.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 2 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/coldfront-fig2.jpg" alt="Current Response"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/coldfront-fig2.jpg<br>Before/after current maps<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 2: Shelf Response</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Comparison of surface current fields before and after cold front passage, showing dramatic changes in circulation patterns on the continental shelf.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 3 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/coldfront-fig3.jpg" alt="Time Series Analysis"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/coldfront-fig3.jpg<br>Wind and current time series<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 3: Temporal Evolution</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Time series showing wind vectors and surface currents during cold front event, illustrating the temporal evolution of shelf response.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         KEY FINDINGS
+         Edit: Add your results as research progresses
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Preliminary Results</h2>
+                
+                <div class="field-work">
+                    <h3>Initial Observations</h3>
+                    <ul class="campaign-list">
+                        <li><strong>Rapid Response:</strong> Shelf currents respond within 6-12 hours of cold front passage</li>
+                        <li><strong>Current Reversal:</strong> Strong westward to eastward current reversals observed during events</li>
+                        <li><strong>Spatial Variability:</strong> Response magnitude varies with water depth and distance from shore</li>
+                        <li><strong>Recovery Time:</strong> Post-frontal circulation patterns persist for 2-4 days before returning to pre-front conditions</li>
+                    </ul>
+                </div>
+
+                <div class="field-work" style="margin-top: var(--space-lg);">
+                    <h3>Ongoing Work</h3>
+                    <ul class="campaign-list">
+                        <li>Statistical analysis of multiple cold front events across multiple seasons</li>
+                        <li>Development of predictive framework for shelf response to atmospheric forcing</li>
+                        <li>Manuscript preparation for Journal of Physical Oceanography</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimon Morsheduzzaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

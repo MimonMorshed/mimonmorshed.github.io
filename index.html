@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimon Morsheduzzaman — Physical Oceanographer</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Ocean Effects Canvas -->
+    <canvas id="ocean-canvas"></canvas>
+
+    <!-- ============================================
+         NAVIGATION
+         Edit: Links, logo text
+         ============================================ -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#hero" class="nav-brand">Mimon Morsheduzzaman</a>
+                <div class="nav-links">
+                    <a href="#research" class="nav-link">Research</a>
+                    <a href="#publications" class="nav-link">Publications</a>
+                    <a href="#education" class="nav-link">Education</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION
+         Edit: Name, title, bio text, profile image
+         Image: images/profile.jpg (300x300px recommended)
+         ============================================ -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1 class="name">Mimon Morsheduzzaman</h1>
+                    <p class="subtitle">PhD Candidate, Physical Oceanography</p>
+                    <p class="institution">Louisiana State University</p>
+                    
+                    <div class="bio">
+                        <p>I investigate ocean surface currents and coastal dynamics using High-Frequency radar systems. My research explores how atmospheric forcing—particularly cold fronts—shapes shelf circulation in the Gulf of Mexico, with implications for coastal transport processes and marine operations.</p>
+                    </div>
+                </div>
+                
+                <div class="profile-container">
+                    <div class="profile-image">
+                        <!-- REPLACE THIS: Add your photo as images/profile.jpg -->
+                        <img src="images/profile.jpg" alt="Mimon Morsheduzzaman" 
+                             onerror="this.parentElement.innerHTML='<div class=\'placeholder-text\'>Add your photo:<br><strong>images/profile.jpg</strong><br>(300x300px)</div>'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info Card -->
+            <div class="info-card">
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">
+                        <a href="mailto:fakmnu1@lsu.edu">fakmnu1@lsu.edu</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Location</div>
+                    <div class="info-value">Baton Rouge, Louisiana</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Office</div>
+                    <div class="info-value">Energy, Coast & Environment Building</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Advisor</div>
+                    <div class="info-value">
+                        <a href="https://www.lsu.edu/science/coastal/people/li.php" target="_blank">Dr. Chunyan Li</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Lab</div>
+                    <div class="info-value">
+                        <a href="http://wavcis.lsu.edu/" target="_blank">WAVCIS Lab</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Legal Name</div>
+                    <div class="info-value">A K M Nura Alam Morsheduzzaman</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         RESEARCH SECTION
+         Edit: Projects, descriptions
+         Images: images/project-1.jpg, project-2.jpg, etc.
+         ============================================ -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">Research</h2>
+            <p class="section-subtitle">Investigating coastal ocean dynamics through observation and analysis</p>
+
+            <!-- Research Focus Cards -->
+            <div class="research-grid">
+                <!-- Project 1 -->
+                <div class="research-card card-3d">
+                    <div class="card-image">
+                        <!-- Image: 400x300px recommended -->
+                        <img src="images/project-hf-radar.jpg" alt="HF Radar Research"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/project-hf-radar.jpg<br>400x300px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>HF Radar Observations</h3>
+                        <p>Characterizing surface current patterns in the northern Gulf of Mexico using WAVCIS network data. Developing improved methodologies for current field analysis.</p>
+                        <a href="project-hf-radar.html" class="card-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="research-card card-3d">
+                    <div class="card-image">
+                        <img src="images/project-cold-fronts.jpg" alt="Cold Front Dynamics"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/project-cold-fronts.jpg<br>400x300px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cold Front Impacts</h3>
+                        <p>Investigating atmospheric cold front effects on continental shelf circulation. Analyzing shelf response to synoptic-scale forcing events.</p>
+                        <a href="project-cold-fronts.html" class="card-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="research-card card-3d">
+                    <div class="card-image">
+                        <img src="images/project-ml-detection.jpg" alt="ML for Ocean Fronts"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/project-ml-detection.jpg<br>400x300px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Deep Learning Applications</h3>
+                        <p>Developed CNN-based semantic segmentation models for oceanic front detection in the Bay of Bengal from satellite observations.</p>
+                        <a href="project-ml-detection.html" class="card-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Field Work Summary -->
+            <div class="field-work">
+                <h3>Field Campaigns</h3>
+                <ul class="campaign-list">
+                    <li><strong>Fall 2024:</strong> Oceanographic data collection in northern Gulf of Mexico during cold front season</li>
+                    <li><strong>WAVCIS Network:</strong> Ongoing work with long-term HF radar datasets for circulation analysis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PUBLICATIONS SECTION
+         Edit: Paper details
+         ============================================ -->
+    <section id="publications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+
+            <div class="publications-grid">
+                <!-- Publication 1 -->
+                <div class="publication-card">
+                    <div class="pub-type">Conference</div>
+                    <h4>Deep Learning for Oceanic Front Detection in the Bay of Bengal</h4>
+                    <p class="pub-authors">Morsheduzzaman, M., et al.</p>
+                    <p class="pub-venue">Bangladesh Oceanographic Research Institute Conference, 2023</p>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="publication-card">
+                    <div class="pub-type">In Progress</div>
+                    <h4>Cold Front Impacts on Shelf Circulation: An HF Radar Perspective</h4>
+                    <p class="pub-authors">Morsheduzzaman, M., Li, C.</p>
+                    <p class="pub-venue">Target: Journal of Physical Oceanography</p>
+                </div>
+
+                <!-- Google Scholar Placeholder -->
+                <div class="scholar-note">
+                    <p>📚 Additional publications in preparation. Google Scholar profile coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         EDUCATION SECTION
+         Edit: Degrees, dates, descriptions
+         ============================================ -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education & Experience</h2>
+
+            <div class="timeline">
+                <!-- Education 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2024 – Present</div>
+                    <h3>PhD, Physical Oceanography</h3>
+                    <div class="timeline-org">Louisiana State University</div>
+                    <p>Conducting doctoral research on ocean surface currents using HF radar systems. Investigating atmospheric forcing impacts on shelf circulation in the Gulf of Mexico under Dr. Chunyan Li at the WAVCIS Lab.</p>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 – 2023</div>
+                    <h3>B.Sc. in Oceanography</h3>
+                    <div class="timeline-org">University of Chittagong, Bangladesh</div>
+                    <p>Specialized in Physical and Satellite Oceanography. Developed deep learning models for oceanic front detection. Active research member of the Coastal and Geomorphological Lab.</p>
+                </div>
+
+                <!-- Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 – 2023</div>
+                    <h3>Undergraduate Research Assistant</h3>
+                    <div class="timeline-org">Coastal and Geomorphological Lab, University of Chittagong</div>
+                    <p>Research on physical processes in marine environments, ocean modeling, and global circulation patterns. Contributed to multiple research presentations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         Edit: Social links, collaboration text
+         ============================================ -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Connect</h2>
+            
+            <div class="contact-grid">
+                <a href="mailto:fakmnu1@lsu.edu" class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>fakmnu1@lsu.edu</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/mimon-morshed/" target="_blank" class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <p>Professional network</p>
+                </a>
+
+                <a href="https://github.com/MimonMorshed" target="_blank" class="contact-card">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p>Code repositories</p>
+                </a>
+
+                <div class="contact-card" style="opacity: 0.6; cursor: default;">
+                    <div class="contact-icon">🎓</div>
+                    <h3>Google Scholar</h3>
+                    <p>Coming soon</p>
+                </div>
+            </div>
+
+            <div class="collab-note">
+                <p>Open to research collaborations in <strong>physical oceanography</strong>, <strong>HF radar systems</strong>, and <strong>coastal dynamics</strong>. Interested in opportunities for summer research exchanges and interdisciplinary projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         Edit: Copyright year, name
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimon Morsheduzzaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

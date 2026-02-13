@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HF Radar Observations — Mimon Morsheduzzaman</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Ocean Effects Canvas -->
+    <canvas id="ocean-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-brand">← Back to Home</a>
+                <div class="nav-links">
+                    <a href="index.html#research" class="nav-link">Research</a>
+                    <a href="index.html#publications" class="nav-link">Publications</a>
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         PROJECT HEADER
+         Edit: Title, subtitle, timeline
+         ============================================ -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="container">
+            <h1 class="name" style="font-size: clamp(2rem, 4vw, 3rem);">HF Radar Observations</h1>
+            <p class="subtitle">Characterizing Surface Current Patterns in the Northern Gulf of Mexico</p>
+            <p class="institution">WAVCIS Network • Louisiana State University</p>
+            
+            <div class="info-card" style="margin-top: var(--space-xl);">
+                <div class="info-item">
+                    <div class="info-label">Timeline</div>
+                    <div class="info-value">Aug 2024 – Present</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Location</div>
+                    <div class="info-value">Northern Gulf of Mexico</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Collaborators</div>
+                    <div class="info-value">Dr. Chunyan Li, WAVCIS Team</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Status</div>
+                    <div class="info-value">Ongoing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROJECT OVERVIEW
+         Edit: Description, objectives
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Overview</h2>
+                
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-md);">
+                    This project focuses on characterizing surface current patterns in the northern Gulf of Mexico using High-Frequency (HF) radar systems from the WAVCIS network. The research aims to develop improved methodologies for current field analysis and understand the temporal and spatial variability of shelf circulation.
+                </p>
+
+                <h3 style="margin-top: var(--space-lg); margin-bottom: var(--space-md);">Research Objectives</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        Analyze long-term HF radar datasets to identify current patterns and circulation features
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        Develop quality control procedures for HF radar velocity measurements
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        Investigate seasonal and event-driven variability in shelf currents
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md);">
+                        Validate radar observations with in-situ measurements and model outputs
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         METHODOLOGY
+         Edit: Methods description
+         ============================================ -->
+    <section class="section section-alt">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Methodology</h2>
+                
+                <h3 style="margin-bottom: var(--space-md);">Data Collection</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-lg);">
+                    The WAVCIS network operates multiple CODAR SeaSonde HF radar stations along the Louisiana coast. These systems measure surface currents by detecting the Doppler shift of radio waves scattered by ocean waves. We utilize both radial velocity data from individual stations and combined vector current fields.
+                </p>
+
+                <h3 style="margin-bottom: var(--space-md);">Analysis Techniques</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-md);">
+                    • Quality control using signal-to-noise ratio and geometric dilution of precision (GDOP) metrics<br>
+                    • EOF analysis to identify dominant circulation modes<br>
+                    • Spectral analysis for temporal variability characterization<br>
+                    • Comparison with ADCP measurements and numerical model outputs
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FIGURES & RESULTS
+         Images: images/hfradar-fig1.jpg, hfradar-fig2.jpg, etc.
+         Edit: Add your figures, update captions
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Figures & Results</h2>
+            
+            <div class="research-grid" style="margin-top: var(--space-xl);">
+                <!-- Figure 1 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/hfradar-fig1.jpg" alt="HF Radar Coverage Map"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/hfradar-fig1.jpg<br>Coverage map of HF radar stations<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 1: Radar Coverage</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Spatial coverage of WAVCIS HF radar network showing station locations and overlapping measurement domains in the northern Gulf of Mexico.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 2 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/hfradar-fig2.jpg" alt="Current Velocity Field"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/hfradar-fig2.jpg<br>Surface current velocity vectors<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 2: Current Patterns</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Example of surface current velocity field derived from HF radar measurements, showing typical circulation patterns on the Louisiana shelf.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 3 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/hfradar-fig3.jpg" alt="Temporal Variability"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/hfradar-fig3.jpg<br>Time series of current speed<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 3: Temporal Analysis</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Time series showing temporal variability of surface currents, highlighting seasonal patterns and event-driven changes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         POSTERS & PRESENTATIONS
+         Images: images/hfradar-poster1.jpg, etc.
+         ============================================ -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Presentations</h2>
+            
+            <div class="publications-grid" style="margin-top: var(--space-xl);">
+                <!-- Poster 1 Placeholder -->
+                <div class="publication-card">
+                    <div class="pub-type">Poster</div>
+                    <h4>HF Radar Observations of Shelf Circulation Patterns</h4>
+                    <p class="pub-authors">Morsheduzzaman, M., Li, C.</p>
+                    <p class="pub-venue">AGU Ocean Sciences Meeting, 2025 (Planned)</p>
+                    <div style="margin-top: var(--space-md);">
+                        <img src="images/hfradar-poster1.jpg" alt="Conference Poster"
+                             style="width: 100%; border-radius: 8px; border: 1px solid var(--border);"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'height: 200px;\'>images/hfradar-poster1.jpg<br>Conference poster<br>800x1200px</div>'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         KEY FINDINGS (Optional)
+         Edit: Add your results as they develop
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Preliminary Findings</h2>
+                
+                <div class="field-work">
+                    <h3>Current Progress</h3>
+                    <ul class="campaign-list">
+                        <li><strong>Data Quality:</strong> Established quality control protocols for HF radar velocity measurements</li>
+                        <li><strong>Circulation Features:</strong> Identified persistent current patterns associated with shelf break processes</li>
+                        <li><strong>Validation:</strong> Ongoing comparison with ADCP measurements showing good agreement (R² > 0.75)</li>
+                        <li><strong>Publications:</strong> Manuscript in preparation for Journal of Physical Oceanography</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimon Morsheduzzaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

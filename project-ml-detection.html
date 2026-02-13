@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Learning for Ocean Fronts — Mimon Morsheduzzaman</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Inter Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Ocean Effects Canvas -->
+    <canvas id="ocean-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="nav-brand">← Back to Home</a>
+                <div class="nav-links">
+                    <a href="index.html#research" class="nav-link">Research</a>
+                    <a href="index.html#publications" class="nav-link">Publications</a>
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         PROJECT HEADER
+         Edit: Title, subtitle, timeline
+         ============================================ -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="container">
+            <h1 class="name" style="font-size: clamp(2rem, 4vw, 3rem);">Deep Learning for Oceanic Front Detection</h1>
+            <p class="subtitle">CNN-Based Semantic Segmentation in the Bay of Bengal</p>
+            <p class="institution">University of Chittagong, Bangladesh</p>
+            
+            <div class="info-card" style="margin-top: var(--space-xl);">
+                <div class="info-item">
+                    <div class="info-label">Timeline</div>
+                    <div class="info-value">2022 – 2023</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Location</div>
+                    <div class="info-value">Bay of Bengal</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Institution</div>
+                    <div class="info-value">Coastal & Geomorphological Lab</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Status</div>
+                    <div class="info-value">Completed (Undergraduate Thesis)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROJECT OVERVIEW
+         Edit: Description, objectives
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Overview</h2>
+                
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-md);">
+                    Oceanic fronts are boundaries between water masses with different properties and play crucial roles in marine ecosystems and biogeochemical cycles. Traditional detection methods rely on manual analysis or simple gradient techniques. This project developed a deep learning approach using Convolutional Neural Networks (CNNs) for automated detection and segmentation of oceanic fronts from satellite observations in the Bay of Bengal.
+                </p>
+
+                <h3 style="margin-top: var(--space-lg); margin-bottom: var(--space-md);">Research Objectives</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        Develop a CNN-based semantic segmentation model for oceanic front detection
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        Create labeled training dataset from satellite SST and chlorophyll imagery
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md); margin-bottom: var(--space-sm);">
+                        Compare model performance with traditional gradient-based methods
+                    </li>
+                    <li style="padding: var(--space-sm) 0; border-left: 3px solid var(--ocean-accent); padding-left: var(--space-md);">
+                        Analyze seasonal and spatial patterns of front occurrence in the Bay of Bengal
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         METHODOLOGY
+         Edit: Methods description
+         ============================================ -->
+    <section class="section section-alt">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Methodology</h2>
+                
+                <h3 style="margin-bottom: var(--space-md);">Data Sources</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-lg);">
+                    • <strong>Sea Surface Temperature:</strong> MODIS Aqua Level-3 daily 4km SST data<br>
+                    • <strong>Chlorophyll-a:</strong> MODIS Ocean Color chlorophyll concentration<br>
+                    • <strong>Study Area:</strong> Bay of Bengal (80-100°E, 5-25°N)<br>
+                    • <strong>Time Period:</strong> 2020-2022 (covering monsoon and non-monsoon seasons)
+                </p>
+
+                <h3 style="margin-bottom: var(--space-md);">Model Architecture</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-lg);">
+                    Implemented a U-Net architecture with:<br>
+                    • Encoder path with convolutional and max-pooling layers<br>
+                    • Decoder path with up-sampling and skip connections<br>
+                    • Binary cross-entropy loss function<br>
+                    • Adam optimizer with learning rate scheduling
+                </p>
+
+                <h3 style="margin-bottom: var(--space-md);">Training & Validation</h3>
+                <p style="font-size: var(--font-body); line-height: 1.8; margin-bottom: var(--space-md);">
+                    Created labeled dataset of 500+ satellite images with manually annotated front locations. Used 70-15-15 split for training, validation, and testing. Evaluated model performance using precision, recall, F1-score, and Intersection over Union (IoU) metrics.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FIGURES & RESULTS
+         Images: images/mldetection-fig1.jpg, mldetection-fig2.jpg, etc.
+         Edit: Add your figures, update captions
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Results & Visualizations</h2>
+            
+            <div class="research-grid" style="margin-top: var(--space-xl);">
+                <!-- Figure 1 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/mldetection-fig1.jpg" alt="Model Architecture"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/mldetection-fig1.jpg<br>U-Net architecture diagram<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 1: CNN Architecture</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            U-Net architecture used for semantic segmentation of oceanic fronts, showing encoder-decoder structure with skip connections.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 2 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/mldetection-fig2.jpg" alt="Detection Example"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/mldetection-fig2.jpg<br>Input SST vs predicted fronts<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 2: Detection Results</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Example of model prediction showing input SST field (left), ground truth (center), and CNN prediction (right) for front locations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 3 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/mldetection-fig3.jpg" alt="Performance Metrics"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/mldetection-fig3.jpg<br>Precision-recall curves<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 3: Model Performance</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Quantitative evaluation metrics showing precision-recall curves and IoU scores across validation dataset.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Figure 4 -->
+                <div class="research-card">
+                    <div class="card-image" style="height: 300px;">
+                        <img src="images/mldetection-fig4.jpg" alt="Seasonal Patterns"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'img-placeholder\'>images/mldetection-fig4.jpg<br>Seasonal front frequency<br>600x450px</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Figure 4: Seasonal Analysis</h3>
+                        <p style="font-size: var(--font-small); color: var(--text-secondary);">
+                            Spatial distribution of front occurrence frequency during monsoon and non-monsoon seasons in the Bay of Bengal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         KEY FINDINGS
+         Edit: Summarize results
+         ============================================ -->
+    <section class="section section-alt">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Key Findings</h2>
+                
+                <div class="field-work">
+                    <h3>Model Performance</h3>
+                    <ul class="campaign-list">
+                        <li><strong>Accuracy:</strong> Achieved 87% precision and 82% recall on test dataset</li>
+                        <li><strong>IoU Score:</strong> Mean Intersection over Union of 0.74, indicating strong spatial overlap</li>
+                        <li><strong>Comparison:</strong> Outperformed traditional gradient-based methods by 23% in F1-score</li>
+                        <li><strong>Robustness:</strong> Model performed well across varying cloud cover and sea state conditions</li>
+                    </ul>
+                </div>
+
+                <div class="field-work" style="margin-top: var(--space-lg);">
+                    <h3>Oceanographic Insights</h3>
+                    <ul class="campaign-list">
+                        <li><strong>Seasonal Variability:</strong> Front occurrence peaks during monsoon transition periods</li>
+                        <li><strong>Spatial Patterns:</strong> Fronts concentrated along shelf break and river discharge plumes</li>
+                        <li><strong>Physical Mechanisms:</strong> Strong correlation with freshwater discharge and upwelling events</li>
+                    </ul>
+                </div>
+
+                <div class="field-work" style="margin-top: var(--space-lg);">
+                    <h3>Publications & Recognition</h3>
+                    <ul class="campaign-list">
+                        <li>Presented at Bangladesh Oceanographic Research Institute Conference, 2023</li>
+                        <li>Awarded Best Undergraduate Research Project, University of Chittagong</li>
+                        <li>Code and trained models available on GitHub</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CODE & RESOURCES
+         Optional: Link to GitHub, datasets, etc.
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: left;">Resources</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-card" style="cursor: default;">
+                        <div class="contact-icon">💻</div>
+                        <h3>Code Repository</h3>
+                        <p>GitHub repository with model implementation and training scripts (Coming soon)</p>
+                    </div>
+                    
+                    <div class="contact-card" style="cursor: default;">
+                        <div class="contact-icon">📊</div>
+                        <h3>Dataset</h3>
+                        <p>Labeled front dataset available for research purposes upon request</p>
+                    </div>
+                    
+                    <div class="contact-card" style="cursor: default;">
+                        <div class="contact-icon">📄</div>
+                        <h3>Thesis</h3>
+                        <p>Full undergraduate thesis document (PDF available)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mimon Morsheduzzaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
