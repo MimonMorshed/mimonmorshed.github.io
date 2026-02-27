@@ -152,7 +152,7 @@ a:hover {
    ============================================== */
 .hero-three-col {
     display: grid;
-    grid-template-columns: 320px minmax(400px, 600px) 300px;
+    grid-template-columns: 500px minmax(400px, 600px) 400px;
     gap: 0;
     min-height: auto;
     max-height: none;
@@ -298,9 +298,9 @@ a:hover {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 700px;               /* Wider max */
-    min-height: 600px;              /* Min height */
-    max-height: 80vh;               /* Max 80% of viewport */
+    max-width: 600px;
+    height: 700px;
+    margin: 0 auto;          /* ADD THIS LINE - centers horizontally */
 }
 
 .hero-image img {
