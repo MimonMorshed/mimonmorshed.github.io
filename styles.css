@@ -152,10 +152,10 @@ a:hover {
    ============================================== */
 .hero-three-col {
     display: grid;
-    grid-template-columns: 320px 1fr 300px;
+    grid-template-columns: 320px 500px 300px;
     gap: 0;
-    min-height: 75vh;
-    max-height: 85vh;
+    min-height: auto;
+    max-height: none;
     padding-top: 60px;
 }
 
@@ -297,11 +297,13 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 500px;           /* ADDED */
+    height: 700px;          /* ADDED */
 }
 
 .hero-image img {
-    width: 100%;
-    height: 100%;
+    width: 500px;           /* CHANGED: 100% → 500px */
+    height: 700px;          /* CHANGED: 100% → 700px */
     object-fit: cover;
     object-position: center;
     opacity: 0.85;
@@ -940,5 +942,37 @@ a:hover {
 @media (max-width: 600px) {
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-three-col {
+        grid-template-columns: 320px 1fr;  /* Hide timeline, shrink image */
+    }
+    
+    .hero-image {
+        width: 100%;
+        height: 600px;
+    }
+    
+    .hero-image img {
+        width: 100%;
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-three-col {
+        grid-template-columns: 1fr;  /* Stack everything */
+    }
+    
+    .hero-image {
+        width: 100%;
+        height: 500px;
+    }
+    
+    .hero-image img {
+        width: 100%;
+        height: 500px;
     }
 }
