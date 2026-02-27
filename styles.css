@@ -150,11 +150,12 @@ a:hover { color: var(--ocean-bright); }
    ============================================== */
 .hero-three-col {
     display: grid;
-    grid-template-columns: 320px minmax(400px, 1fr) 300px;
-    min-height: calc(100vh - 60px);
+    grid-template-columns: 300px 1fr 280px;
+    height: 680px;           /* Fixed height — all three columns match */
     padding-top: 60px;
     gap: 0;
     background: var(--ocean-deep);
+    overflow: hidden;        /* Nothing bleeds out */
 }
 
 /* ---- LEFT: Identity Sidebar ---- */
@@ -163,6 +164,7 @@ a:hover { color: var(--ocean-bright); }
     border-right: 1px solid rgba(255,255,255,0.06);
     padding: var(--space-lg) var(--space-md);
     overflow-y: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -324,7 +326,8 @@ a:hover { color: var(--ocean-bright); }
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 560px;
+    width: 100%;
+    height: 100%;           /* Fill the fixed hero height */
 }
 
 .hero-image img {
@@ -346,7 +349,6 @@ a:hover { color: var(--ocean-bright); }
     font-size: 0.875rem;
     text-align: center;
     padding: var(--space-lg);
-    min-height: 560px;
 }
 
 .hero-overlay {
@@ -379,6 +381,7 @@ a:hover { color: var(--ocean-bright); }
     border-left: 1px solid rgba(255,255,255,0.06);
     padding: var(--space-lg) var(--space-md);
     overflow-y: auto;
+    height: 100%;
 }
 
 .timeline-sidebar h3 {
@@ -459,13 +462,13 @@ a:hover { color: var(--ocean-bright); }
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-xl);   /* Match hero's visual padding */
 }
 
 .container-narrow {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-xl);
 }
 
 .section-title {
@@ -883,29 +886,42 @@ a:hover { color: var(--ocean-bright); }
 /* ==============================================
    RESPONSIVE
    ============================================== */
+
+/* Large tablets — hide timeline, shrink left */
 @media (max-width: 1200px) {
     .hero-three-col {
-        grid-template-columns: 300px 1fr;
+        grid-template-columns: 280px 1fr;
+        height: 640px;
     }
     .timeline-sidebar { display: none; }
 }
 
-@media (max-width: 900px) {
+/* Medium — shrink further */
+@media (max-width: 960px) {
+    .hero-three-col {
+        grid-template-columns: 260px 1fr;
+        height: 580px;
+    }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Tablet/mobile — stack everything */
 @media (max-width: 768px) {
     .hero-three-col {
         grid-template-columns: 1fr;
-        min-height: auto;
+        height: auto;
+        overflow: visible;
     }
 
     .identity-sidebar {
+        height: auto;
         border-right: none;
         border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .hero-image { min-height: 50vh; }
+    .hero-image {
+        height: 420px;
+    }
 
     .nav-container {
         flex-direction: column;
@@ -917,8 +933,13 @@ a:hover { color: var(--ocean-bright); }
 
     .research-grid,
     .field-grid { grid-template-columns: 1fr; }
+
+    .container,
+    .container-narrow { padding: 0 var(--space-md); }
 }
 
 @media (max-width: 600px) {
     .gallery-grid { grid-template-columns: 1fr; }
+
+    .hero-image { height: 320px; }
 }
