@@ -150,7 +150,7 @@ a:hover { color: var(--ocean-bright); }
    ============================================== */
 .hero-three-col {
     display: grid;
-    grid-template-columns: 300px 1fr 280px;
+    grid-template-columns: 340px 1fr 280px;
     height: 680px;           /* Fixed height — all three columns match */
     padding-top: 60px;
     gap: 0;
@@ -170,8 +170,6 @@ a:hover { color: var(--ocean-bright); }
 }
 
 .identity-card {
-    position: sticky;
-    top: var(--space-lg);
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
@@ -908,7 +906,7 @@ a:hover { color: var(--ocean-bright); }
 /* Large tablets — hide timeline, shrink left */
 @media (max-width: 1200px) {
     .hero-three-col {
-        grid-template-columns: 280px 1fr;
+        grid-template-columns: 320px 1fr;
         height: 640px;
     }
     .timeline-sidebar { display: none; }
@@ -917,7 +915,7 @@ a:hover { color: var(--ocean-bright); }
 /* Medium — shrink further */
 @media (max-width: 960px) {
     .hero-three-col {
-        grid-template-columns: 260px 1fr;
+        grid-template-columns: 300px 1fr;
         height: 580px;
     }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
