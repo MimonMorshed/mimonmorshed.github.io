@@ -3,381 +3,714 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mimon Morsheduzzaman — Physical Oceanographer</title>
+    <title>Mimon Morsheduzzaman | Physical Oceanographer</title>
+    <meta name="description" content="PhD candidate studying ocean surface currents and HF radar systems at Louisiana State University">
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Manrope (Headings) + Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Ocean Background Canvas -->
+    <canvas id="ocean-canvas"></canvas>
 
-    <!-- NAVIGATION (LEFT-ALIGNED WITH TYPEWRITER) -->
-    <nav class="nav">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#hero" class="nav-brand">
-                <span id="typewriter"></span>
-                <span class="cursor-blink">|</span>
+            <a href="#home" class="nav-logo">
+                <span class="logo-name">Mimon</span>
+                <span class="logo-dot">•</span>
+                <span class="logo-field">Oceanography</span>
             </a>
-            <div class="nav-links">
-                <a href="#research" class="nav-link">RESEARCH</a>
-                <a href="#publications" class="nav-link">PUBLICATIONS</a>
-                <a href="#awards" class="nav-link">AWARDS</a>
-                <a href="#education" class="nav-link">EDUCATION</a>
-                <a href="#field" class="nav-link">FIELD</a>
-                <a href="#gallery" class="nav-link">GALLERY</a>
-                <a href="#connect" class="nav-link">CONNECT</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#photography" class="nav-link">Photography</a></li>
+                <li><a href="#cv" class="nav-link">CV</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- THREE COLUMN HERO: Identity | Hero Image | Timeline -->
-    <section id="hero" class="hero-three-col">
-        <!-- LEFT: Identity Card -->
-        <aside class="identity-sidebar">
-            <div class="identity-card">
-                <div class="identity-photo">
-                    <img src="images/profile.jpg" alt="Mimon Morsheduzzaman" 
-                         onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>Profile<br>Photo</div>'">
-                </div>
-                
-                <h2 class="identity-name">Mimon<br>Morsheduzzaman</h2>
-                
-                <div class="identity-info">
-                    <div class="info-row">
-                        <span class="info-label">Location:</span>
-                        <span class="info-text">Baton Rouge, LA</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Office:</span>
-                        <span class="info-text">Energy, Coast & Environment</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Lab:</span>
-                        <span class="info-text"><a href="http://wavcis.lsu.edu/">WAVCIS Lab</a></span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Advisor:</span>
-                        <span class="info-text"><a href="https://www.lsu.edu/science/coastal/people/li.php">Dr. Chunyan Li</a></span>
-                    </div>
-                </div>
-                
-                <div class="research-interests">
-                    <h3>Research</h3>
-                    <ul>
-                        <li>HF Radar Systems</li>
-                        <li>Cold Front Dynamics</li>
-                        <li>Shelf Circulation</li>
-                        <li>Coastal Oceanography</li>
-                    </ul>
-                </div>
-                
-                <div class="identity-links">
-                    <a href="mailto:fakmnu1@lsu.edu" class="id-link">📧 Email</a>
-                    <a href="https://www.linkedin.com/in/mimon-morshed/" class="id-link">💼 LinkedIn</a>
-                    <a href="https://github.com/MimonMorshed" class="id-link">💻 GitHub</a>
-                </div>
-            </div>
-        </aside>
-
-        <!-- MIDDLE: Hero Image -->
-        <div class="hero-image">
-            <img src="images/hero-ocean.jpg" alt="Coastal Research"
-                 onerror="this.parentElement.innerHTML='<div class=\'hero-placeholder\'>Add: images/hero-ocean.jpg<br>HF Radar station or ocean scene<br>(300x600px)</div>'">
-            <div class="hero-overlay">
-                <h1>PhD Candidate<br>Physical Oceanography</h1>
-                <p class="hero-uni">Louisiana State University</p>
+    <!-- Hero Section with Particle Flow -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="wave-pattern"></div>
+            <div class="radar-sweep">
+                <div class="radar-ring ring-1"></div>
+                <div class="radar-ring ring-2"></div>
+                <div class="radar-ring ring-3"></div>
             </div>
         </div>
-
-        <!-- RIGHT: Research Timeline -->
-        <aside class="timeline-sidebar">
-            <h3>Research Timeline</h3>
-            <div class="timeline-compact">
-                <div class="tl-entry">
-                    <div class="tl-year">2024–Present</div>
-                    <div class="tl-title">Cold Front Impacts on Shelf Circulation</div>
-                    <div class="tl-status ongoing">Ongoing</div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">🌊</span>
+                <span>Physical Oceanographer</span>
+            </div>
+            <h1 class="hero-title">
+                A K M Nura Alam<br>
+                <span class="highlight-name">Morsheduzzaman</span>
+            </h1>
+            <p class="hero-preferred">
+                (Mimon)
+            </p>
+            <p class="hero-subtitle">
+                PhD Candidate | Louisiana State University
+            </p>
+            <p class="hero-description">
+                Investigating ocean surface currents and coastal dynamics using 
+                <span class="text-highlight">High-Frequency Radar systems</span> and 
+                <span class="text-highlight">deep learning</span>
+            </p>
+            <div class="hero-buttons">
+                <a href="#research" class="btn btn-primary">
+                    <span>Explore Research</span>
+                    <svg class="btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Get in Touch</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">WAVCIS Lab</div>
+                    <div class="stat-label">LSU</div>
                 </div>
-                
-                <div class="tl-entry">
-                    <div class="tl-year">2024–Present</div>
-                    <div class="tl-title">HF Radar Current Analysis</div>
-                    <div class="tl-status ongoing">Ongoing</div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">HF Radar</div>
+                    <div class="stat-label">Coastal Dynamics</div>
                 </div>
-                
-                <div class="tl-entry">
-                    <div class="tl-year">2022–2023</div>
-                    <div class="tl-title">ML Ocean Front Detection</div>
-                    <div class="tl-status completed">Completed</div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">Gulf of Mexico</div>
+                    <div class="stat-label">Study Area</div>
                 </div>
             </div>
-        </aside>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
     </section>
 
-    <!-- CURRENT RESEARCH -->
-    <section id="research" class="section">
+    <!-- About Section -->
+    <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">Current Research</h2>
-            <p class="section-subtitle">Investigating coastal dynamics through HF radar observations</p>
-
-            <div class="research-grid">
-                <div class="research-card card-3d">
-                    <div class="card-image">
-                        <img src="images/project-hf-radar.jpg" alt="HF Radar"
-                             onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>HF Radar Project</div>'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-chips">
-                            <span class="chip topic">HF Radar</span>
-                            <span class="chip topic">Surface Currents</span>
-                            <span class="chip meta">2024–present</span>
-                        </div>
-                        <h3>HF Radar Observations</h3>
-                        <p>Characterizing surface current patterns using WAVCIS network data.</p>
-                        <a href="project-hf-radar.html" class="card-link">Learn More →</a>
-                    </div>
-                </div>
-
-                <div class="research-card card-3d">
-                    <div class="card-image">
-                        <img src="images/project-cold-fronts.jpg" alt="Cold Fronts"
-                             onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Cold Front Project</div>'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-chips">
-                            <span class="chip topic">Cold Fronts</span>
-                            <span class="chip topic">Shelf Circulation</span>
-                            <span class="chip meta">2024–present</span>
-                        </div>
-                        <h3>Cold Front Impacts</h3>
-                        <p>Investigating atmospheric forcing effects on continental shelf circulation.</p>
-                        <a href="project-cold-fronts.html" class="card-link">Learn More →</a>
-                    </div>
-                </div>
-
-                <div class="research-card card-3d">
-                    <div class="card-image">
-                        <img src="images/project-ml-detection.jpg" alt="ML Detection"
-                             onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>ML Project</div>'">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-chips">
-                            <span class="chip topic">Machine Learning</span>
-                            <span class="chip topic">Bay of Bengal</span>
-                            <span class="chip meta">Completed 2023</span>
-                        </div>
-                        <h3>Deep Learning Applications</h3>
-                        <p>CNN-based models for oceanic front detection from satellite data.</p>
-                        <a href="project-ml-detection.html" class="card-link">Learn More →</a>
-                    </div>
-                </div>
+            <div class="section-header">
+                <span class="section-tag">Background</span>
+                <h2 class="section-title">About Me</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- PUBLICATIONS (CONDENSED) -->
-    <section id="publications" class="section section-alt">
-        <div class="container-narrow">
-            <h2 class="section-title">Publications</h2>
             
-            <div class="condensed-box">
-                <div class="list-item">
-                    <span class="badge conference">Conference</span>
-                    <h4>Deep Learning for Oceanic Front Detection in the Bay of Bengal</h4>
-                    <p class="meta">Morsheduzzaman, M., et al. • Bangladesh Oceanographic Research Institute Conference, 2023</p>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead-text">
+                        I'm a PhD candidate in the <strong>WAVCIS Lab</strong> at Louisiana State University, 
+                        working under Dr. Chunyan Li to understand how the ocean responds to extreme weather events.
+                    </p>
+                    <p>
+                        My research focuses on <strong>surface current dynamics during cold fronts</strong> using 
+                        High-Frequency (HF) radar data from the Gulf of Mexico. I analyze how atmospheric forcing 
+                        temporarily overwhelms tidal patterns, producing rapid current acceleration and flow reversals.
+                    </p>
+                    <p>
+                        Previously, I developed <strong>deep learning models for oceanic front detection</strong> 
+                        in the Bay of Bengal using CNN-based semantic segmentation—automating what was traditionally 
+                        a manual, time-intensive process.
+                    </p>
+                    <div class="about-interests">
+                        <h3>Research Interests</h3>
+                        <div class="interest-tags">
+                            <span class="interest-tag">Physical Oceanography</span>
+                            <span class="interest-tag">HF Radar Systems</span>
+                            <span class="interest-tag">Air-Sea Interaction</span>
+                            <span class="interest-tag">Coastal Dynamics</span>
+                            <span class="interest-tag">Machine Learning</span>
+                            <span class="interest-tag">Remote Sensing</span>
+                        </div>
+                    </div>
+                    <p class="personal-note">
+                        Outside the lab, I enjoy ocean photography and strategy games—both require patience, 
+                        observation, and understanding complex systems.
+                    </p>
                 </div>
-                
-                <div class="list-item">
-                    <span class="badge in-progress">In Progress</span>
-                    <h4>Cold Front Impacts on Shelf Circulation: An HF Radar Perspective</h4>
-                    <p class="meta">Morsheduzzaman, M., Li, C. • Target: Journal of Physical Oceanography</p>
-                </div>
-                
-                <div class="list-note">
-                    📚 Additional publications in preparation. Google Scholar profile coming soon.
+
+                <div class="about-education">
+                    <h3>Education</h3>
+                    
+                    <div class="education-timeline">
+                        <div class="education-item active">
+                            <div class="edu-marker"></div>
+                            <div class="edu-content">
+                                <span class="edu-year">2024 – Present</span>
+                                <h4>PhD in Oceanography & Coastal Sciences</h4>
+                                <p class="edu-institution">Louisiana State University, USA</p>
+                                <p class="edu-detail">
+                                    <strong>Advisor:</strong> Dr. Chunyan Li<br>
+                                    <strong>Focus:</strong> HF radar applications, surface current dynamics, 
+                                    extreme weather impacts
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="edu-marker"></div>
+                            <div class="edu-content">
+                                <span class="edu-year">2021</span>
+                                <h4>M.Sc. in Oceanography</h4>
+                                <p class="edu-institution">University of Chittagong, Bangladesh</p>
+                                <p class="edu-detail">
+                                    <strong>Thesis:</strong> Modulation of Bay of Bengal Ocean Circulation by 
+                                    Boreal Summer Intraseasonal Oscillation (BSISO)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="edu-marker"></div>
+                            <div class="edu-content">
+                                <span class="edu-year">2020</span>
+                                <h4>B.Sc. in Oceanography</h4>
+                                <p class="edu-institution">University of Chittagong, Bangladesh</p>
+                                <p class="edu-detail">
+                                    <strong>CGPA:</strong> 3.55/4.0<br>
+                                    <strong>Thesis:</strong> CNN-based oceanic front detection in 
+                                    the Northern Bay of Bengal
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AWARDS (CONDENSED) -->
-    <section id="awards" class="section">
-        <div class="container-narrow">
-            <h2 class="section-title">Awards & Grants</h2>
+    <!-- Research Projects Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What I Do</span>
+                <h2 class="section-title">Research Projects</h2>
+            </div>
+
+            <!-- PhD Research: HF Radar -->
+            <div class="project-card featured">
+                <div class="project-badge">Current Research</div>
+                <div class="project-grid">
+                    <div class="project-content">
+                        <h3>HF Radar Observations of Cold Front Impacts on Shelf Circulation</h3>
+                        <div class="project-meta">
+                            <span class="meta-item">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2024 – Present
+                            </span>
+                            <span class="meta-item">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Gulf of Mexico
+                            </span>
+                        </div>
+                        
+                        <p class="project-description">
+                            Using High-Frequency radar surface currents to examine atmospheric cold front impacts 
+                            on the Louisiana-Mississippi continental shelf. During the March 2021 event:
+                        </p>
+                        
+                        <ul class="project-highlights">
+                            <li>Current speeds <strong>increased by 3–4×</strong>, exceeding 40 cm/s</li>
+                            <li>Surface flow directions <strong>reversed within 12–24 hours</strong></li>
+                            <li>Along-shelf velocity showed the <strong>strongest response</strong></li>
+                            <li>Meteorological forcing temporarily <strong>overwhelmed tidal control</strong></li>
+                            <li>Normal circulation patterns recovered over ~5–7 days</li>
+                        </ul>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">HF Radar</span>
+                            <span class="tech-tag">Surface Currents</span>
+                            <span class="tech-tag">Cold Fronts</span>
+                            <span class="tech-tag">Tidal Analysis</span>
+                            <span class="tech-tag">Wavelet Transform</span>
+                        </div>
+
+                        <div class="project-outputs">
+                            <h4>Outputs</h4>
+                            <ul>
+                                <li>
+                                    <strong>Poster:</strong> Presented at AMS 106th Annual Meeting, 2026
+                                    <a href="AMS26_poster_draft.pdf" class="output-link" target="_blank">View Poster →</a>
+                                </li>
+                                <li><strong>Manuscript:</strong> In preparation for submission</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-collaboration">
+                            <strong>Collaborators:</strong> Dr. Chunyan Li (LSU), Dr. Kehui Xu (LSU), 
+                            Dr. Stephan Howden (USM)
+                        </div>
+                    </div>
+
+                    <div class="project-visual">
+                        <div class="visual-placeholder poster-preview">
+                            <div class="placeholder-content">
+                                <svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                                <p>Add your HF radar poster visualization here<br>
+                                <small>(Current vectors, wavelet spectra, time series)</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master's Research: Deep Learning -->
+            <div class="project-card">
+                <div class="project-grid">
+                    <div class="project-content">
+                        <h3>Deep Learning for Oceanic Fronts Detection</h3>
+                        <div class="project-meta">
+                            <span class="meta-item">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                </svg>
+                                2021 – 2023
+                            </span>
+                            <span class="meta-item">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Bay of Bengal
+                            </span>
+                        </div>
+                        
+                        <p class="project-description">
+                            Developed a CNN-based semantic segmentation model to automatically detect oceanic fronts 
+                            in the Northern Bay of Bengal. The model achieved <strong>high IoU scores</strong> and 
+                            outperformed traditional gradient-based methods.
+                        </p>
+                        
+                        <ul class="project-highlights">
+                            <li>Created <strong>annotated dataset</strong> of 1,096 SST images (2018–2021)</li>
+                            <li>Trained deep learning models (U-Net, SegNet, DeepLabV3+, PSPNet, etc.)</li>
+                            <li>Automated detection vs. manual methods (saves hours of analysis time)</li>
+                            <li>Enables <strong>real-time monitoring</strong> for environmental applications</li>
+                        </ul>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">Semantic Segmentation</span>
+                            <span class="tech-tag">Remote Sensing</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+
+                        <div class="project-outputs">
+                            <h4>Outputs</h4>
+                            <ul>
+                                <li>
+                                    <strong>Poster:</strong> International Conference on Oceanography, 2024
+                                    <a href="Poster.png" class="output-link" target="_blank">View Poster →</a>
+                                </li>
+                                <li><strong>B.Sc. Thesis:</strong> University of Chittagong</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-visual">
+                        <div class="visual-placeholder">
+                            <div class="placeholder-content">
+                                <svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <p>Add oceanic fronts detection results<br>
+                                <small>(Original image, predicted mask, ground truth)</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master's Thesis: BSISO -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Bay of Bengal Circulation & Intraseasonal Oscillation</h3>
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <svg fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                            </svg>
+                            M.Sc. Thesis (2021)
+                        </span>
+                        <span class="meta-item">
+                            <svg fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Bay of Bengal
+                        </span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Investigated how the <strong>Boreal Summer Intraseasonal Oscillation (BSISO)</strong> 
+                        modulates ocean circulation patterns in the Bay of Bengal using satellite observations 
+                        and reanalysis data.
+                    </p>
+
+                    <div class="project-tech">
+                        <span class="tech-tag">Satellite Observation</span>
+                        <span class="tech-tag">Ocean Circulation</span>
+                        <span class="tech-tag">BSISO</span>
+                        <span class="tech-tag">Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Field Work Section -->
+            <div class="fieldwork-section">
+                <div class="section-header">
+                    <span class="section-tag">In The Field</span>
+                    <h2 class="subsection-title">Field Campaigns & Training</h2>
+                </div>
+                <p class="section-intro">
+                    Hands-on experience with oceanographic instrumentation and HF radar systems
+                </p>
+                
+                <div class="fieldwork-grid">
+                    <div class="fieldwork-card">
+                        <div class="fieldwork-image">
+                            <div class="image-placeholder">
+                                <p>📷 Add field photo</p>
+                            </div>
+                        </div>
+                        <div class="fieldwork-info">
+                            <h4>HF Radar Deployment | Gulf of Mexico</h4>
+                            <p class="fieldwork-date">2024 – Present</p>
+                            <p>
+                                Working with HF radar stations along the Louisiana-Mississippi coast. 
+                                Gained experience with CODAR Ocean Sensors systems, data processing, 
+                                and quality control procedures.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fieldwork-card">
+                        <div class="fieldwork-image">
+                            <div class="image-placeholder">
+                                <p>📷 Add field photo</p>
+                            </div>
+                        </div>
+                        <div class="fieldwork-info">
+                            <h4>Ocean Color Remote Sensing Training</h4>
+                            <p class="fieldwork-date">July 2024</p>
+                            <p>
+                                Advanced training workshop (SatCO2-2024) on ocean color remote sensing 
+                                conducted by University of Chittagong and Second Institute of Oceanography, China.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fieldwork-card">
+                        <div class="fieldwork-image">
+                            <div class="image-placeholder">
+                                <p>📷 Add field photo</p>
+                            </div>
+                        </div>
+                        <div class="fieldwork-info">
+                            <h4>Hydrographic Survey | Chittagong Port</h4>
+                            <p class="fieldwork-date">August 2019</p>
+                            <p>
+                                Onboard training with Chittagong Port Authority's Hydrographic Field Office. 
+                                Learned bathymetric surveying, sediment sampling, and estuarine dynamics.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fieldwork-card">
+                        <div class="fieldwork-image">
+                            <div class="image-placeholder">
+                                <p>📷 Add field photo</p>
+                            </div>
+                        </div>
+                        <div class="fieldwork-info">
+                            <h4>Karnaphuli River Estuary Survey</h4>
+                            <p class="fieldwork-date">April – June 2022</p>
+                            <p>
+                                Collected and analyzed field data on sediment transport dynamics. 
+                                Used current meters, sediment samplers, and GPS equipment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography" class="photography">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Visual Documentation</span>
+                <h2 class="section-title">Ocean Photography</h2>
+                <p class="section-intro">
+                    Capturing coastal dynamics and field observations from research campaigns
+                </p>
+            </div>
             
-            <div class="condensed-box">
-                <div class="list-item">
-                    <span class="badge award">Award</span>
-                    <h4>1st Place — Coastal Oceanography Presentation</h4>
-                    <p class="meta">American Meteorological Society (AMS) Annual Meeting • 2024</p>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <div class="image-placeholder">
+                        <p>📷 Ocean photo 1</p>
+                    </div>
+                    <p class="photo-caption">Caption describing the scene</p>
+                </div>
+                <div class="photo-item">
+                    <div class="image-placeholder">
+                        <p>📷 Ocean photo 2</p>
+                    </div>
+                    <p class="photo-caption">Caption describing the scene</p>
+                </div>
+                <div class="photo-item">
+                    <div class="image-placeholder">
+                        <p>📷 Ocean photo 3</p>
+                    </div>
+                    <p class="photo-caption">Caption describing the scene</p>
+                </div>
+                <div class="photo-item">
+                    <div class="image-placeholder">
+                        <p>📷 Ocean photo 4</p>
+                    </div>
+                    <p class="photo-caption">Caption describing the scene</p>
+                </div>
+                <div class="photo-item">
+                    <div class="image-placeholder">
+                        <p>📷 Ocean photo 5</p>
+                    </div>
+                    <p class="photo-caption">Caption describing the scene</p>
+                </div>
+                <div class="photo-item">
+                    <div class="image-placeholder">
+                        <p>📷 Ocean photo 6</p>
+                    </div>
+                    <p class="photo-caption">Caption describing the scene</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv" class="cv-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Resume</span>
+                <h2 class="section-title">Curriculum Vitae</h2>
+            </div>
+            
+            <div class="cv-content">
+                <p class="section-intro">
+                    View or download my full academic CV
+                </p>
+                
+                <div class="cv-buttons">
+                    <a href="CV_Mimon_Morsheduzzaman.pdf" class="btn btn-primary" target="_blank">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Download CV (PDF)</span>
+                    </a>
                 </div>
                 
-                <div class="list-item">
-                    <span class="badge fellowship">Fellowship</span>
-                    <h4>National Science & Technology Fellowship</h4>
-                    <p class="meta">Ministry of Science and Technology, Bangladesh • 2022–2023</p>
-                </div>
-                
-                <div class="list-item">
-                    <span class="badge grant">Grant</span>
-                    <h4>Fast-Track Community Impact Nano-Grant</h4>
-                    <p class="meta">Ocean Science Mentorship Bangladesh (OSMBD) • 2022</p>
+                <!-- CV Highlights -->
+                <div class="cv-highlights">
+                    <div class="cv-highlight-card">
+                        <h3>Publications & Presentations</h3>
+                        <ul>
+                            <li>
+                                <strong>Morsheduzzaman, M.</strong>, Li, C., Xu, K., & Howden, S. (2026). 
+                                "HF Radar Observations of Cold Front Impacts on Shelf Circulation." 
+                                <em>Poster presented at AMS 106th Annual Meeting</em>.
+                            </li>
+                            <li>
+                                <strong>Morsheduzzaman, M.</strong>, et al. (2024). 
+                                "Deep Learning for Environmental Monitoring: Oceanic Fronts Detection." 
+                                <em>International Conference on Oceanography</em>.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-highlight-card">
+                        <h3>Technical Skills</h3>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h4>Programming</h4>
+                                <div class="skill-tags">
+                                    <span>Python</span>
+                                    <span>MATLAB</span>
+                                    <span>LaTeX</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>ML/DL Frameworks</h4>
+                                <div class="skill-tags">
+                                    <span>TensorFlow</span>
+                                    <span>Keras</span>
+                                    <span>PyTorch</span>
+                                    <span>scikit-learn</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>GIS & Remote Sensing</h4>
+                                <div class="skill-tags">
+                                    <span>ArcGIS</span>
+                                    <span>ENVI</span>
+                                    <span>QGIS</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Oceanographic Tools</h4>
+                                <div class="skill-tags">
+                                    <span>HF Radar Processing</span>
+                                    <span>Tidal Analysis</span>
+                                    <span>Harmonic Analysis</span>
+                                    <span>Wavelet Transform</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-highlight-card">
+                        <h3>Awards & Fellowships</h3>
+                        <ul>
+                            <li>National Science and Technology (NST) Fellowship 2024-25 (Under Review)</li>
+                            <li>OSMBD Fast-track Community Impact Nano-grant (2022)</li>
+                            <li>Champion - Student Community Policing Leadership Workshop (2018)</li>
+                            <li>Top 100 Projects - NASA Space App Challenge, Bangladesh (2017)</li>
+                        </ul>
+                    </div>
+
+                    <div class="cv-highlight-card">
+                        <h3>English Proficiency</h3>
+                        <div class="ielts-scores">
+                            <div class="score-item">
+                                <div class="score-value">9.0</div>
+                                <div class="score-label">Listening</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-value">8.5</div>
+                                <div class="score-label">Reading</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-value">7.5</div>
+                                <div class="score-label">Speaking</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-value">7.0</div>
+                                <div class="score-label">Writing</div>
+                            </div>
+                            <div class="score-item overall">
+                                <div class="score-value">8.0</div>
+                                <div class="score-label">Overall (C1)</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section id="education" class="section section-alt">
-        <div class="container-narrow">
-            <h2 class="section-title">Education & Experience</h2>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Aug 2024 – Present</div>
-                    <h3>PhD, Physical Oceanography</h3>
-                    <div class="timeline-org">Louisiana State University</div>
-                    <p>Doctoral research on ocean surface currents using HF radar systems under Dr. Chunyan Li.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">2019 – 2023</div>
-                    <h3>B.Sc. in Oceanography</h3>
-                    <div class="timeline-org">University of Chittagong, Bangladesh</div>
-                    <p>Specialized in Physical and Satellite Oceanography. Developed deep learning models for oceanic front detection.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">2022 – 2023</div>
-                    <h3>Undergraduate Research Assistant</h3>
-                    <div class="timeline-org">Coastal and Geomorphological Lab</div>
-                    <p>Research on physical processes in marine environments and ocean modeling.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FIELD CAMPAIGNS -->
-    <section id="field" class="section">
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Field Campaigns & Training</h2>
-
-            <div class="field-grid">
-                <div class="field-card">
-                    <div class="field-badge">Fall 2024</div>
-                    <h3>Cold Front Field Campaign</h3>
-                    <p class="field-loc">Northern Gulf of Mexico</p>
-                    <p>Intensive observational campaign with shipboard measurements.</p>
-                </div>
-
-                <div class="field-card">
-                    <div class="field-badge">Ongoing</div>
-                    <h3>HF Radar Operations</h3>
-                    <p class="field-loc">WAVCIS Network, Louisiana</p>
-                    <p>Regular work with CODAR SeaSonde systems and data quality assessment.</p>
-                </div>
-
-                <div class="field-card">
-                    <div class="field-badge">2022-2023</div>
-                    <h3>Bay of Bengal Observations</h3>
-                    <p class="field-loc">Bangladesh Coast</p>
-                    <p>Coastal monitoring and in-situ data collection for satellite validation.</p>
-                </div>
+            <div class="section-header">
+                <span class="section-tag">Let's Connect</span>
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-intro">
+                    Interested in collaboration or have questions about my research? Feel free to reach out.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- RESEARCH ENVIRONMENTS GALLERY -->
-    <section id="gallery" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Field & Coastal Observations</h2>
-            <p class="section-subtitle">Research environments and instrumentation</p>
-
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="images/gallery-hfr-station.jpg" alt="HF Radar Station"
-                             onerror="this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>HF Radar Station<br>images/gallery-hfr-station.jpg</div>'">
-                    </div>
-                    <p class="gallery-caption">WAVCIS HF radar station on Louisiana coast</p>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="images/gallery-pier.jpg" alt="Coastal Pier"
-                             onerror="this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>Coastal Pier<br>images/gallery-pier.jpg</div>'">
-                    </div>
-                    <p class="gallery-caption">Field site for oceanographic observations</p>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="images/gallery-equipment.jpg" alt="Field Equipment"
-                             onerror="this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>Field Equipment<br>images/gallery-equipment.jpg</div>'">
-                    </div>
-                    <p class="gallery-caption">CODAR SeaSonde instrumentation setup</p>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="images/gallery-coastal.jpg" alt="Coastal Environment"
-                             onerror="this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>Coastal Scene<br>images/gallery-coastal.jpg</div>'">
-                    </div>
-                    <p class="gallery-caption">Northern Gulf of Mexico study area</p>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="images/gallery-marsh.jpg" alt="Marsh Work"
-                             onerror="this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>Marsh Work<br>images/gallery-marsh.jpg</div>'">
-                    </div>
-                    <p class="gallery-caption">Coastal wetland monitoring site</p>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="images/gallery-deployment.jpg" alt="Equipment Deployment"
-                             onerror="this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>Deployment<br>images/gallery-deployment.jpg</div>'">
-                    </div>
-                    <p class="gallery-caption">Sensor deployment during field campaign</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONNECT -->
-    <section id="connect" class="section">
-        <div class="container-narrow">
-            <h2 class="section-title">Connect</h2>
             
             <div class="contact-grid">
-                <a href="mailto:fakmnu1@lsu.edu" class="contact-card">
-                    <div class="contact-icon">📧</div>
+                <div class="contact-card">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
                     <h3>Email</h3>
-                    <p>fakmnu1@lsu.edu</p>
-                </a>
+                    <a href="mailto:amorshe@lsu.edu">amorshe@lsu.edu</a>
+                </div>
 
-                <a href="https://www.linkedin.com/in/mimon-morshed/" class="contact-card">
-                    <div class="contact-icon">💼</div>
-                    <h3>LinkedIn</h3>
-                    <p>Connect</p>
-                </a>
+                <div class="contact-card">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h3>ORCID</h3>
+                    <a href="https://orcid.org/your-orcid" target="_blank">ORCID Profile</a>
+                </div>
 
-                <a href="https://github.com/MimonMorshed" class="contact-card">
-                    <div class="contact-icon">💻</div>
+                <div class="contact-card">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
                     <h3>GitHub</h3>
-                    <p>Repositories</p>
-                </a>
+                    <a href="https://github.com/mimonmorshed" target="_blank">@mimonmorshed</a>
+                </div>
+
+                <div class="contact-card">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
+                    </svg>
+                    <h3>Google Scholar</h3>
+                    <a href="https://scholar.google.com/citations?user=your-id" target="_blank">Publications</a>
+                </div>
+
+                <div class="contact-card">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h3>ResearchGate</h3>
+                    <a href="https://www.researchgate.net/profile/your-profile" target="_blank">Profile</a>
+                </div>
+
+                <div class="contact-card">
+                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h3>WAVCIS Lab</h3>
+                    <a href="https://www.wavcis.lsu.edu/team/alam.htm" target="_blank">Lab Profile</a>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 Mimon Morsheduzzaman</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p class="footer-name">Mimon Morsheduzzaman</p>
+                    <p class="footer-affiliation">PhD Candidate | Louisiana State University</p>
+                    <p class="footer-lab">WAVCIS Lab | Coastal Ocean Estuarine Dynamics Lab</p>
+                </div>
+                <div class="footer-note">
+                    <p>&copy; 2026 Mimon Morsheduzzaman. Built with ocean currents and caffeine ☕🌊</p>
+                    <p class="footer-credit">Designed to reflect the dynamics I study</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
