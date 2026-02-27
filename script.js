@@ -1,36 +1,30 @@
 // ============================================
-// WEBSITE INTERACTIONS
-// Custom Cursor, 3D Cards, Smooth Navigation
+// TYPEWRITER EFFECT FOR NAV
 // ============================================
-
-// ============================================
-// CUSTOM CURSOR EFFECT
-// ============================================
-class CustomCursor {
+class Typewriter {
     constructor() {
-        this.cursor = document.createElement('div');
-        this.cursor.className = 'cursor';
-        document.body.appendChild(this.cursor);
+        this.element = document.getElementById('typewriter');
+        if (!this.element) return;
         
-        document.addEventListener('mousemove', (e) => {
-            this.cursor.style.left = e.clientX - 20 + 'px';
-            this.cursor.style.top = e.clientY - 20 + 'px';
-        });
+        this.text = 'Mimon Morsheduzzaman';
+        this.index = 0;
+        this.speed = 100; // milliseconds per character
         
-        document.addEventListener('mousedown', () => {
-            this.cursor.classList.add('clicking');
-        });
-        
-        document.addEventListener('mouseup', () => {
-            this.cursor.classList.remove('clicking');
-        });
-        
-        console.log('✅ Custom cursor initialized');
+        this.type();
+        console.log('✅ Typewriter initialized');
+    }
+    
+    type() {
+        if (this.index < this.text.length) {
+            this.element.textContent += this.text.charAt(this.index);
+            this.index++;
+            setTimeout(() => this.type(), this.speed);
+        }
     }
 }
 
 // ============================================
-// 3D CARD TILT EFFECT (Keep)
+// 3D CARD TILT EFFECT
 // ============================================
 class Card3DEffect {
     constructor() {
@@ -124,9 +118,9 @@ class Navigation {
 // INITIALIZE EVERYTHING
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌊 Initializing Research Website...');
-    
-    new CustomCursor();
+    console.log('🌊 Initializing site...');
+   
+    new Typewriter();
     new Card3DEffect();
     new Navigation();
     
