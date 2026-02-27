@@ -177,16 +177,15 @@ a:hover { color: var(--ocean-bright); }
     gap: var(--space-md);
 }
 
-/* Photo */
+/* Photo — rectangular, fills sidebar width */
 .identity-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    width: 100%;
+    height: 200px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     background: rgba(255,255,255,0.08);
-    border: 3px solid rgba(130,196,248,0.35);
-    margin: 0 auto;
-    box-shadow: 0 0 0 6px rgba(33,150,243,0.08);
+    border: 1px solid rgba(130,196,248,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .identity-photo img {
@@ -288,34 +287,53 @@ a:hover { color: var(--ocean-bright); }
     opacity: 0.8;
 }
 
-/* Identity links */
+/* Identity links — horizontal icon row */
 .identity-links {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     padding-top: var(--space-sm);
     border-top: 1px solid rgba(255,255,255,0.08);
+    justify-content: flex-start;
 }
 
 .id-link {
-    padding: 0.5rem 0.75rem;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius-sm);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.8) !important;
-    text-align: center;
-    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.7rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75) !important;
     text-decoration: none;
-    display: block;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+/* Icon-only buttons (no text span) */
+.id-link:not(:has(span)) {
+    padding: 0.45rem 0.6rem;
+}
+
+.id-link svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.id-link span {
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .id-link:hover {
     background: rgba(33,150,243,0.2);
     border-color: rgba(33,150,243,0.4);
     color: white !important;
-    transform: translateX(2px);
 }
 
 /* ---- MIDDLE: Hero Image ---- */
@@ -905,22 +923,42 @@ a:hover { color: var(--ocean-bright); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Tablet/mobile — stack everything */
+/* Tablet — identity full-width on top, image + timeline side by side below */
 @media (max-width: 768px) {
     .hero-three-col {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
         height: auto;
         overflow: visible;
     }
 
+    /* Identity spans full width */
     .identity-sidebar {
+        grid-column: 1 / -1;
+        grid-row: 1;
         height: auto;
         border-right: none;
         border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding: var(--space-md);
     }
 
+    .identity-card { position: static; }
+    .identity-photo { height: 200px; }
+
+    /* Hero image takes left half */
     .hero-image {
-        height: 420px;
+        grid-column: 1 / 2;
+        grid-row: 2;
+        height: 300px;
+    }
+
+    /* Timeline shows again on right half */
+    .timeline-sidebar {
+        display: block !important;
+        grid-column: 2 / 3;
+        grid-row: 2;
+        height: 300px;
+        border-left: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav-container {
@@ -938,8 +976,26 @@ a:hover { color: var(--ocean-bright); }
     .container-narrow { padding: 0 var(--space-md); }
 }
 
-@media (max-width: 600px) {
-    .gallery-grid { grid-template-columns: 1fr; }
+/* Small mobile — fully stacked */
+@media (max-width: 520px) {
+    .hero-three-col {
+        grid-template-columns: 1fr;
+    }
 
-    .hero-image { height: 320px; }
+    .hero-image {
+        grid-column: 1;
+        grid-row: 2;
+        height: 240px;
+    }
+
+    .timeline-sidebar {
+        grid-column: 1 !important;
+        grid-row: 3;
+        height: auto !important;
+        border-left: none !important;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding: var(--space-md);
+    }
+
+    .gallery-grid { grid-template-columns: 1fr; }
 }
