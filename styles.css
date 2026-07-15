@@ -1,0 +1,226 @@
+  :root {
+    --bg: #FFFFFF;
+    --bg-raise: #F0F0F0;
+    --text: #000000;
+    --text-soft: #616161;
+    --accent: #4669E0;
+    --rule: rgba(0,0,0,0.14);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: inherit; text-decoration:none; }
+  .display { font-family:'Plus Jakarta Sans', sans-serif; font-weight:700; letter-spacing:-0.02em; }
+  .ui { font-family:'Plus Jakarta Sans', sans-serif; }
+
+  .page {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  nav {
+    padding: 32px 0 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav .mark { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:18px; }
+  nav ul { list-style:none; display:flex; gap:6px; font-family:'Plus Jakarta Sans',sans-serif; }
+  nav ul a {
+    font-size:13px;
+    letter-spacing:0.02em;
+    color: var(--text-soft);
+    padding: 7px 14px;
+    border-radius: 100px;
+    transition: background 150ms ease, color 150ms ease;
+  }
+  nav ul a:hover { color: var(--bg); background: var(--text); }
+  nav ul a.current { color: var(--bg); background: var(--text); }
+
+  .page { position: relative; }
+  .hero {
+    padding: 56px 0 44px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: end;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -100px;
+    width: 820px;
+    height: 528px;
+    background-image: url('images/gallery_background.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.13;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > div { position: relative; z-index: 1; }
+  .kicker {
+    font-family:'Fraunces',serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  h1.display {
+    font-size: 38px;
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+  .bio p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    max-width: 460px;
+  }
+  .bio a { color: var(--text); border-bottom: 1px solid var(--accent); }
+  .bio a:hover { color: var(--accent); }
+
+  .avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 14px;
+    filter: grayscale(1) contrast(1.05);
+    border: 1px solid var(--rule);
+  }
+  .bg-attribution {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: -8px auto 0;
+    padding: 0 40px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--text-soft);
+    opacity: 0.7;
+  }
+  .facts { font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color: var(--text-soft); }
+  .facts .role { color: var(--text); font-size:15px; margin-bottom:14px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .facts dl { display:grid; grid-template-columns: 70px 1fr; gap:8px 12px; }
+  .facts dt { color: var(--text-soft); }
+  .facts dd a:hover { color: var(--accent); }
+
+  .writing {
+    padding: 8px 0 40px;
+    border-top: 1px solid var(--rule);
+    margin-top: auto;
+  }
+  .section-label {
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding: 26px 0 20px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .section-label span { font-family:'Fraunces',serif; font-style:italic; font-size:15px; color: var(--text-soft); }
+  .section-label a {
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--text-soft);
+    padding: 6px 12px;
+    border-radius: 100px;
+    transition: background 150ms ease, color 150ms ease;
+  }
+  .section-label a:hover { color: var(--bg); background: var(--text); }
+
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .card {
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .card-imgs { position: absolute; inset: 0; }
+  .card-img {
+    position: absolute; inset: 0;
+    background-size: cover;
+    opacity: 0;
+    animation: slideFade 9s infinite;
+    transition: transform 600ms ease;
+  }
+  .card-img:nth-child(1) { background: linear-gradient(135deg, #6B686A, #3D3B3D); animation-delay: 0s; }
+  .card-img:nth-child(2) { background: linear-gradient(135deg, #5A6E8C, #33404F); animation-delay: -3s; }
+  .card-img:nth-child(3) { background: linear-gradient(135deg, #7A7360, #423E31); animation-delay: -6s; }
+  @keyframes slideFade {
+    0%   { opacity: 0; }
+    4%   { opacity: 1; }
+    29%  { opacity: 1; }
+    34%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .card:hover .card-img { animation-play-state: paused; transform: scale(1.07); }
+  .card::after {
+    content: '';
+    position: absolute; inset:0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20,19,20,0.92) 100%);
+    z-index: 1;
+  }
+  .card .info {
+    position: absolute; left:16px; right:16px; bottom:14px; z-index:2;
+  }
+  .card .meta {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    color: rgba(243,239,233,0.7);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card h3 {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #F3EFE9;
+    line-height: 1.25;
+  }
+
+  footer {
+    padding: 22px 0 30px;
+    border-top: 1px solid var(--rule);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  footer .links { display:flex; gap:10px; font-size:13px; }
+  footer .links a {
+    padding: 8px 16px;
+    border: 1px solid var(--text);
+    border-radius: 100px;
+    color: var(--text);
+    transition: background 150ms ease, color 150ms ease;
+  }
+  footer .links a:hover { background: var(--text); color: var(--bg); }
+  footer .links a.disabled {
+    color: var(--text-soft);
+    border-color: var(--rule);
+    cursor: default;
+    pointer-events: none;
+  }
+  footer .copy { font-size:12px; color: var(--text-soft); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap:24px; align-items:start; }
+    .card-row { grid-template-columns: 1fr; }
+    .card { aspect-ratio: 16/10; }
+  }
