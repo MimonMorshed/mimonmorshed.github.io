@@ -1,4 +1,4 @@
-  :root {
+:root {
     --bg: #FFFFFF;
     --bg-raise: #F0F0F0;
     --text: #000000;
@@ -51,38 +51,54 @@
 
   .page { position: relative; }
   .hero {
-    padding: 56px 0 44px;
+    padding: 48px 0 0;
+    min-height: clamp(420px, 58vh, 640px);
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
     gap: 60px;
-    align-items: end;
+    align-items: stretch;
     position: relative;
   }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 28px;
+  }
+  .hero-top { padding-top: clamp(12px, 6vh, 56px); }
   .hero::before {
     content: '';
     position: absolute;
-    top: -30px; right: -100px;
-    width: 820px;
-    height: 528px;
+    inset: 0;
     background-image: url('images/gallery_background.jpg');
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.13;
+    opacity: 0.75;
     pointer-events: none;
     z-index: 0;
   }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 45%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.75) 38%, rgba(255,255,255,0.15) 68%, rgba(255,255,255,0) 85%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-left, .facts { position: relative; z-index: 1; }
   .hero > div { position: relative; z-index: 1; }
   .kicker {
     font-family:'Fraunces',serif;
     font-style: italic;
     font-size: 15px;
     color: var(--accent);
-    margin-bottom: 16px;
+    margin-bottom: 22px;
   }
   h1.display {
-    font-size: 38px;
+    font-size: 44px;
     line-height: 1.12;
-    margin-bottom: 18px;
+    margin-bottom: 0;
   }
   .bio p {
     font-size: 17px;
@@ -94,10 +110,10 @@
   .bio a:hover { color: var(--accent); }
 
   .avatar {
-    width: 56px; height: 56px;
+    width: 72px; height: 72px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     filter: grayscale(1) contrast(1.05);
     border: 1px solid var(--rule);
   }
@@ -105,18 +121,42 @@
     position: relative;
     z-index: 1;
     max-width: 1180px;
-    margin: -8px auto 0;
-    padding: 0 40px;
+    margin: 0 auto;
+    padding: 0 40px 22px;
+    text-align: right;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 11px;
     letter-spacing: 0.02em;
     color: var(--text-soft);
-    opacity: 0.7;
+    opacity: 0.65;
   }
-  .facts { font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color: var(--text-soft); }
-  .facts .role { color: var(--text); font-size:15px; margin-bottom:14px; font-family:'Plus Jakarta Sans',sans-serif; }
-  .facts dl { display:grid; grid-template-columns: 70px 1fr; gap:8px 12px; }
-  .facts dt { color: var(--text-soft); }
+  .facts {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:13px;
+    color: var(--text-soft);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 28px;
+  }
+  .facts .role {
+    color: var(--text);
+    font-size:15px;
+    margin-bottom:16px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    line-height: 1.4;
+  }
+  .facts dl {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 12px;
+    row-gap: 8px;
+    justify-content: center;
+  }
+  .facts dt { color: var(--text-soft); text-align: right; }
+  .facts dd { text-align: left; }
   .facts dd a:hover { color: var(--accent); }
 
   .writing {
@@ -146,7 +186,7 @@
     gap: 18px;
   }
   .card {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
