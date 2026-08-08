@@ -4,16 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mimon Morsheduzzaman &middot; Physical Oceanography</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/styles.css">
 <!--
   Home page. Locked as of this session. Split into styles.css / script.js
   so About, Projects, Publications, and Contact can share both files instead
   of duplicating them.
 
+  URL convention: internal links are root-relative and extensionless
+  (/about, /projects, /projects/hfr) rather than pointing at .html files
+  directly. GitHub Pages resolves "/about" to about.html automatically, no
+  Jekyll or redirect config needed, so this works out of the box. Keep this
+  pattern for every new page: a top-level page is <name>.html at the repo
+  root, a page nested under Projects is projects/<slug>.html, and the
+  Projects index itself should eventually be projects/index.html so "/projects"
+  resolves the same way "/" resolves to the root index.html.
+
   Still open / placeholder:
   - Google Scholar link below points to "#", swap in the real URL when ready.
-  - Project titles/tags and other nav links (about.html, etc.) are
-    placeholders until those pages exist.
+  - about.html, projects.html (or projects/index.html), publications.html,
+    and contact.html don't exist yet, so those nav links 404 until built.
   - Typography still on a system font stack, not yet re-decided.
   - Mobile-specific animation scaling (lighter particle count on small
     screens) not yet implemented.
@@ -31,12 +40,12 @@
 
 <nav class="site-nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-brand">MIMON</a>
+    <a href="/" class="nav-brand">MIMON</a>
     <div class="nav-links">
-      <a href="about.html" class="nav-link">About</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="publications.html" class="nav-link">Publications</a>
-      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/projects" class="nav-link">Projects</a>
+      <a href="/publications" class="nav-link">Publications</a>
+      <a href="/contact" class="nav-link">Contact</a>
     </div>
   </div>
 </nav>
@@ -60,7 +69,7 @@
         <p class="intro-facts">Louisiana State University &middot; WAVCIS Lab &middot; Advisor: Dr. Chunyan Li</p>
       </div>
       <div class="intro-photo">
-        <img src="images/gallery_portrait_square_gray.jpg" alt="Portrait of Mimon Morsheduzzaman">
+        <img src="/images/gallery_portrait_square_gray.jpg" alt="Portrait of Mimon Morsheduzzaman">
       </div>
     </div>
   </div>
@@ -134,7 +143,7 @@
       </article>
 
     </div>
-    <a href="projects.html" class="view-all">View all projects &rarr;</a>
+    <a href="/projects" class="view-all">View all projects &rarr;</a>
   </div>
 </section>
 
@@ -151,6 +160,6 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>
