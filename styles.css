@@ -50,8 +50,8 @@ body {
 .intro { padding: 48px 0 8px; }
 .intro-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
 .intro-text { flex: 1 1 320px; min-width: 260px; }
-.intro-text p { margin: 0; font-size: 15px; line-height: 1.75; color: var(--text-body); max-width: 600px; }
-.intro-facts { margin: 16px 0 0; font-size: 12px; letter-spacing: 0.03em; color: var(--text-muted); }
+.intro-text p { margin: 0; font-size: 15px; line-height: 1.75; color: var(--text-body); max-width: 720px; }
+.intro-facts { margin: 28px 0 0; font-size: 12px; font-style: italic; letter-spacing: 0.04em; line-height: 1.8; color: var(--text-muted); }
 .intro-photo {
   flex: 0 0 138px; width: 138px; height: 172px;
   background: var(--surface); border: 0.5px solid var(--border-strong);
@@ -102,6 +102,8 @@ body {
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-canvas { display: none; }
-}
+/* No display:none override here on purpose: script.js already checks
+   prefers-reduced-motion itself and skips the animation loop while still
+   painting one static gradient frame, so reduced-motion visitors get the
+   same calm background, just without the moving particles, rather than
+   the canvas vanishing outright. */
