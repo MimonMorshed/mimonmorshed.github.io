@@ -4,106 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mimon Morsheduzzaman &middot; Physical Oceanography</title>
+<link rel="stylesheet" href="styles.css">
 <!--
-  Home page template, consolidating this session's decisions:
-  - Dark ocean blue palette, gold + blue dual accent system
-  - Animated current flow field hero (200 particles, 40-point trails, cursor wake)
-  - Intro paragraph with a wave-clipped photo placeholder
-  - Projects card grid with a hover figure reveal
+  Home page. Locked as of this session. Split into styles.css / script.js
+  so About, Projects, Publications, and Contact can share both files instead
+  of duplicating them.
 
-  Still open / placeholder in this file:
-  - Typography: using a system font stack for now. Plus Jakarta Sans + Fraunces
-    was the pre-reset plan; not yet re-decided against this darker palette.
-  - .intro-photo and each .card-fig hold placeholder icons/sketches, swap for
-    real images when ready (the wave clip-path will apply to a real <img> the
-    same way it applies to this placeholder div).
-  - Project titles/tags below are placeholders, not real project data.
+  Still open / placeholder:
+  - Google Scholar link below points to "#", swap in the real URL when ready.
+  - Project titles/tags and other nav links (about.html, etc.) are
+    placeholders until those pages exist.
+  - Typography still on a system font stack, not yet re-decided.
+  - Mobile-specific animation scaling (lighter particle count on small
+    screens) not yet implemented.
 -->
-<style>
-  :root {
-    --bg: #0B1F3A;
-    --hero-grad: linear-gradient(135deg, #05182D 0%, #0D3A60 50%, #1C6FA8 100%);
-    --surface: #132C4A;
-    --border: rgba(255,255,255,0.08);
-    --border-strong: rgba(255,255,255,0.18);
-    --text-heading: #FFFFFF;
-    --text-body: #CFE3F5;
-    --text-muted: #7C93AC;
-    --accent-gold: #E8C97E;
-    --accent-blue: #9FD8FF;
-    --pill-blue-bg: rgba(159,216,255,0.15);
-    --pill-blue-border: rgba(159,216,255,0.3);
-    --pill-gold-bg: rgba(232,201,126,0.15);
-    --pill-gold-border: rgba(232,201,126,0.3);
-    --pill-neutral-bg: rgba(184,203,222,0.12);
-    --pill-neutral-border: rgba(184,203,222,0.25);
-    --tag-border: rgba(255,255,255,0.15);
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text-body);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-
-  /* Hero */
-  .hero { position: relative; padding: 90px 48px 80px; background: var(--hero-grad); overflow: hidden; }
-  .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  .hero-content { position: relative; z-index: 2; max-width: 520px; pointer-events: none; }
-  .kicker { font-style: italic; font-size: 14px; letter-spacing: 0.04em; color: var(--accent-gold); margin: 0 0 12px; }
-  .hero-name { font-size: clamp(28px, 5vw, 42px); font-weight: 600; color: var(--text-heading); margin: 0 0 14px; line-height: 1.15; }
-  .hero-tagline { font-size: 15px; color: var(--text-body); line-height: 1.6; margin: 0; max-width: 460px; }
-
-  /* Intro */
-  .intro { padding: 48px 48px 8px; }
-  .intro-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-  .intro-text { flex: 1 1 320px; min-width: 260px; }
-  .intro-text p { margin: 0; font-size: 15px; line-height: 1.75; color: var(--text-body); max-width: 600px; }
-  .intro-facts { margin: 16px 0 0; font-size: 12px; letter-spacing: 0.03em; color: var(--text-muted); }
-  .intro-photo {
-    flex: 0 0 138px; width: 138px; height: 172px;
-    background: var(--surface); border: 0.5px solid var(--border-strong);
-    clip-path: url(#photoWave);
-    display: flex; align-items: center; justify-content: center; color: #5A7694;
-  }
-
-  .section-label { font-style: italic; font-size: 13px; letter-spacing: 0.04em; color: var(--accent-gold); margin: 36px 0 6px; }
-  .section-title { font-size: 22px; font-weight: 600; color: var(--text-heading); margin: 0 0 22px; }
-
-  /* Recent work */
-  .work { padding: 10px 48px 60px; }
-  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-
-  .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; overflow: hidden; transition: border-color 0.3s ease; }
-  .card:hover { border-color: var(--border-strong); }
-  .card-row { display: flex; align-items: flex-start; }
-  .card-body { flex: 1 1 auto; min-width: 0; }
-  .pill { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; border: 0.5px solid; }
-  .pill-gold { background: var(--pill-gold-bg); color: var(--accent-gold); border-color: var(--pill-gold-border); }
-  .pill-blue { background: var(--pill-blue-bg); color: var(--accent-blue); border-color: var(--pill-blue-border); }
-  .pill-neutral { background: var(--pill-neutral-bg); color: var(--text-muted); border-color: var(--pill-neutral-border); }
-  .card-title { font-size: 15px; font-weight: 600; color: var(--text-heading); line-height: 1.4; margin: 0 0 10px; }
-  .tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tag { font-size: 11px; color: var(--text-body); border: 0.5px solid var(--tag-border); border-radius: 999px; padding: 3px 9px; }
-  .card-fig {
-    flex: 0 0 auto; width: 0; opacity: 0; overflow: hidden; transform: translateX(14px); margin-left: 0;
-    transition: width 0.35s ease, opacity 0.35s ease, transform 0.35s ease, margin-left 0.35s ease;
-  }
-  .card:hover .card-fig { width: 60px; opacity: 1; transform: translateX(0); margin-left: 12px; }
-
-  @media (max-width: 640px) {
-    .hero { padding: 64px 24px 56px; }
-    .intro, .work { padding-left: 24px; padding-right: 24px; }
-    .intro-row { flex-direction: column; align-items: flex-start; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-canvas { display: none; }
-  }
-</style>
 </head>
 <body>
 
@@ -115,222 +29,128 @@
   </defs>
 </svg>
 
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">MIMON</a>
+    <div class="nav-links">
+      <a href="about.html" class="nav-link">About</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="publications.html" class="nav-link">Publications</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+  </div>
+</nav>
+
 <section class="hero">
   <canvas class="hero-canvas" id="heroCanvas"></canvas>
-  <div class="hero-content">
-    <p class="kicker">Physical oceanography</p>
-    <h1 class="hero-name">Mimon Morsheduzzaman</h1>
-    <p class="hero-tagline">PhD student studying Gulf of Mexico shelf circulation and its response to atmospheric forcing.</p>
+  <div class="container">
+    <div class="hero-content">
+      <p class="kicker">Physical oceanography</p>
+      <h1 class="hero-name">Mimon Morsheduzzaman</h1>
+      <p class="hero-tagline">PhD student studying Gulf of Mexico shelf circulation and its response to atmospheric forcing.</p>
+    </div>
   </div>
 </section>
 
 <section class="intro">
-  <div class="intro-row">
-    <div class="intro-text">
-      <p>I'm a PhD Student in the Department of Oceanography and Coastal Sciences at Louisiana State University, working in the WAVCIS Lab under Dr. Chunyan Li. My research centers on how Gulf of Mexico shelf circulation responds to atmospheric forcing, using High Frequency Radar observations to see currents at a resolution most models can't reach.</p>
-      <p class="intro-facts">Louisiana State University &middot; WAVCIS Lab &middot; Advisor: Dr. Chunyan Li</p>
-    </div>
-    <!-- Swap the inner SVG icon for a real cropped photo, the wave clip-path applies the same way -->
-    <div class="intro-photo">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <circle cx="12" cy="8" r="4"></circle>
-        <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
-      </svg>
+  <div class="container">
+    <div class="intro-row">
+      <div class="intro-text">
+        <p>I'm a PhD Student in the Department of Oceanography and Coastal Sciences at Louisiana State University, working in the WAVCIS Lab under Dr. Chunyan Li. My research centers on how Gulf of Mexico shelf circulation responds to atmospheric forcing, using High Frequency Radar observations to see currents at a resolution most models can't reach.</p>
+        <p class="intro-facts">Louisiana State University &middot; WAVCIS Lab &middot; Advisor: Dr. Chunyan Li</p>
+      </div>
+      <div class="intro-photo">
+        <img src="images/gallery_portrait_square_gray.jpg" alt="Portrait of Mimon Morsheduzzaman">
+      </div>
     </div>
   </div>
 </section>
 
 <section class="work">
-  <p class="section-label">Recent work</p>
-  <h2 class="section-title">Projects</h2>
-  <div class="work-grid">
+  <div class="container">
+    <p class="section-label">Recent work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="work-grid">
 
-    <!-- Placeholder project entries below, replace with real project data -->
-    <article class="card">
-      <div class="card-row">
-        <div class="card-body">
-          <span class="pill pill-gold">Ongoing</span>
-          <p class="card-title">Shelf circulation response to atmospheric forcing</p>
-          <div class="tags">
-            <span class="tag">HFR</span>
-            <span class="tag">Gulf of Mexico</span>
+      <!-- Placeholder project entries below, replace with real project data -->
+      <article class="card">
+        <div class="card-row">
+          <div class="card-body">
+            <span class="pill pill-gold">Ongoing</span>
+            <p class="card-title">Shelf circulation response to atmospheric forcing</p>
+            <div class="tags">
+              <span class="tag">HFR</span>
+              <span class="tag">Gulf of Mexico</span>
+            </div>
+          </div>
+          <div class="card-fig">
+            <svg viewBox="0 0 60 60" width="60" height="60">
+              <path d="M4,44 C16,30 22,38 30,22 C36,10 44,18 56,6" fill="none" stroke="rgba(207,227,245,0.55)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M2,30 C14,20 20,28 28,14 C34,4 42,10 54,2" fill="none" stroke="rgba(159,216,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M6,54 C18,42 24,48 32,34 C38,24 46,30 58,20" fill="none" stroke="rgba(232,201,126,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
           </div>
         </div>
-        <div class="card-fig">
-          <svg viewBox="0 0 60 60" width="60" height="60">
-            <path d="M4,44 C16,30 22,38 30,22 C36,10 44,18 56,6" fill="none" stroke="rgba(207,227,245,0.55)" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M2,30 C14,20 20,28 28,14 C34,4 42,10 54,2" fill="none" stroke="rgba(159,216,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M6,54 C18,42 24,48 32,34 C38,24 46,30 58,20" fill="none" stroke="rgba(232,201,126,0.5)" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="card">
-      <div class="card-row">
-        <div class="card-body">
-          <span class="pill pill-blue">In progress</span>
-          <p class="card-title">HFR data quality control pipeline</p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Data processing</span>
+      <article class="card">
+        <div class="card-row">
+          <div class="card-body">
+            <span class="pill pill-blue">In progress</span>
+            <p class="card-title">HFR data quality control pipeline</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Data processing</span>
+            </div>
+          </div>
+          <div class="card-fig">
+            <svg viewBox="0 0 60 60" width="60" height="60">
+              <path d="M4,44 C16,30 22,38 30,22 C36,10 44,18 56,6" fill="none" stroke="rgba(207,227,245,0.55)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M2,30 C14,20 20,28 28,14 C34,4 42,10 54,2" fill="none" stroke="rgba(159,216,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M6,54 C18,42 24,48 32,34 C38,24 46,30 58,20" fill="none" stroke="rgba(232,201,126,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
           </div>
         </div>
-        <div class="card-fig">
-          <svg viewBox="0 0 60 60" width="60" height="60">
-            <path d="M4,44 C16,30 22,38 30,22 C36,10 44,18 56,6" fill="none" stroke="rgba(207,227,245,0.55)" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M2,30 C14,20 20,28 28,14 C34,4 42,10 54,2" fill="none" stroke="rgba(159,216,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M6,54 C18,42 24,48 32,34 C38,24 46,30 58,20" fill="none" stroke="rgba(232,201,126,0.5)" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="card">
-      <div class="card-row">
-        <div class="card-body">
-          <span class="pill pill-neutral">Completed</span>
-          <p class="card-title">Coastal current mapping, Mississippi Sound</p>
-          <div class="tags">
-            <span class="tag">Field work</span>
-            <span class="tag">WAVCIS</span>
+      <article class="card">
+        <div class="card-row">
+          <div class="card-body">
+            <span class="pill pill-neutral">Completed</span>
+            <p class="card-title">Coastal current mapping, Mississippi Sound</p>
+            <div class="tags">
+              <span class="tag">Field work</span>
+              <span class="tag">WAVCIS</span>
+            </div>
+          </div>
+          <div class="card-fig">
+            <svg viewBox="0 0 60 60" width="60" height="60">
+              <path d="M4,44 C16,30 22,38 30,22 C36,10 44,18 56,6" fill="none" stroke="rgba(207,227,245,0.55)" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M2,30 C14,20 20,28 28,14 C34,4 42,10 54,2" fill="none" stroke="rgba(159,216,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M6,54 C18,42 24,48 32,34 C38,24 46,30 58,20" fill="none" stroke="rgba(232,201,126,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
           </div>
         </div>
-        <div class="card-fig">
-          <svg viewBox="0 0 60 60" width="60" height="60">
-            <path d="M4,44 C16,30 22,38 30,22 C36,10 44,18 56,6" fill="none" stroke="rgba(207,227,245,0.55)" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M2,30 C14,20 20,28 28,14 C34,4 42,10 54,2" fill="none" stroke="rgba(159,216,255,0.4)" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M6,54 C18,42 24,48 32,34 C38,24 46,30 58,20" fill="none" stroke="rgba(232,201,126,0.5)" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-    </article>
+      </article>
 
+    </div>
+    <a href="projects.html" class="view-all">View all projects &rarr;</a>
   </div>
 </section>
 
-<script>
-(function () {
-  var canvas = document.getElementById('heroCanvas');
-  var ctx = canvas.getContext('2d');
-  var w, h, bgGrad, jetX, jetY, jetR, mouseR;
-  var mouseX = null, mouseY = null;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span class="footer-name">Mimon Morsheduzzaman</span>
+    <div class="footer-links">
+      <a href="mailto:fakmnu1@lsu.edu">Email</a>
+      <a href="https://www.linkedin.com/in/mimon-morshed/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/MimonMorshed" target="_blank" rel="noopener">GitHub</a>
+      <!-- TODO: replace # with the real Google Scholar profile URL -->
+      <a href="#" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+  </div>
+</footer>
 
-  function resize() {
-    var rect = canvas.getBoundingClientRect();
-    w = canvas.width = rect.width;
-    h = canvas.height = rect.height;
-    bgGrad = ctx.createLinearGradient(0, 0, w, h);
-    bgGrad.addColorStop(0, '#05182D');
-    bgGrad.addColorStop(0.5, '#0D3A60');
-    bgGrad.addColorStop(1, '#1C6FA8');
-    jetX = w * 0.62;
-    jetY = h * 0.38;
-    jetR = Math.min(w, h) * 0.22;
-    mouseR = Math.min(w, h) * 0.32;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  canvas.addEventListener('mousemove', function (e) {
-    var rect = canvas.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
-  });
-  canvas.addEventListener('mouseleave', function () { mouseX = null; mouseY = null; });
-  canvas.addEventListener('touchmove', function (e) {
-    if (e.touches && e.touches[0]) {
-      var rect = canvas.getBoundingClientRect();
-      mouseX = e.touches[0].clientX - rect.left;
-      mouseY = e.touches[0].clientY - rect.top;
-    }
-  }, { passive: true });
-  canvas.addEventListener('touchend', function () { mouseX = null; mouseY = null; });
-
-  function speedAt(x, y) {
-    var dx = x - jetX, dy = y - jetY;
-    var jet = Math.exp(-(dx * dx + dy * dy) / (2 * jetR * jetR));
-    var s = 0.16 + jet * 0.85;
-    if (mouseX !== null) {
-      var mdx = x - mouseX, mdy = y - mouseY;
-      var md = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (md < mouseR) s += (1 - md / mouseR) * 0.6;
-    }
-    return s;
-  }
-  function angleAt(x, y, t) {
-    var nx = x / w, ny = y / h;
-    var base = Math.sin(nx * 3 + t * 0.3) * Math.cos(ny * 2.5 - t * 0.2) * Math.PI + Math.sin(ny * 4 - t * 0.15) * 0.6;
-    if (mouseX === null) return base;
-    var dx = x - mouseX, dy = y - mouseY;
-    var d = Math.sqrt(dx * dx + dy * dy);
-    if (d >= mouseR) return base;
-    var falloff = 1 - d / mouseR;
-    var tangent = Math.atan2(dy, dx) + Math.PI / 2;
-    var bx = Math.cos(base) * (1 - falloff) + Math.cos(tangent) * falloff;
-    var by = Math.sin(base) * (1 - falloff) + Math.sin(tangent) * falloff;
-    return Math.atan2(by, bx);
-  }
-
-  var N = 200;
-  var HIST = 40;
-  var particles = [];
-  for (var i = 0; i < N; i++) {
-    particles.push({ x: Math.random() * w, y: Math.random() * h, life: 90 + Math.random() * 180, history: [] });
-  }
-
-  var t = 0;
-  function step() {
-    t += 1;
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, w, h);
-
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      var spd = speedAt(p.x, p.y);
-      var a = angleAt(p.x, p.y, t * 0.012);
-      var stepLen = 0.45 + spd * 1.5;
-      var nx = p.x + Math.cos(a) * stepLen;
-      var ny = p.y + Math.sin(a) * stepLen;
-      p.history.push({ x: nx, y: ny, spd: spd });
-      if (p.history.length > HIST) p.history.shift();
-      p.x = nx; p.y = ny;
-      p.life -= 1;
-
-      var hist = p.history;
-      for (var j = 1; j < hist.length; j++) {
-        var frac = j / (hist.length - 1);
-        var pt0 = hist[j - 1], pt1 = hist[j];
-        var mix = Math.min(1, pt1.spd);
-        var r = Math.round(120 + mix * 135);
-        var g = Math.round(165 + mix * 90);
-        var b = Math.round(210 + mix * 45);
-        var alpha = 0.04 + frac * (0.2 + mix * 0.35);
-        ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 0.3 + frac * (0.7 + mix * 1);
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(pt0.x, pt0.y);
-        ctx.lineTo(pt1.x, pt1.y);
-        ctx.stroke();
-      }
-
-      if (p.life <= 0 || p.x < 0 || p.x > w || p.y < 0 || p.y > h) {
-        p.x = Math.random() * w;
-        p.y = Math.random() * h;
-        p.life = 90 + Math.random() * 180;
-        p.history = [];
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  ctx.fillStyle = bgGrad;
-  ctx.fillRect(0, 0, w, h);
-  if (!reduceMotion) step();
-})();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
