@@ -9,6 +9,16 @@
   var mouseX = null, mouseY = null;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Density tuned against a ~648x380 preview (200 particles felt right there).
+  // Scaled by sqrt(area) rather than linearly, so a huge monitor gets denser
+  // coverage without the particle count (and render cost) exploding 4-5x.
+  var BASE_AREA = 648 * 380;
+  var BASE_N = 200;
+  function particleCountFor(area) {
+    var n = Math.round(BASE_N * Math.sqrt(area / BASE_AREA));
+    return Math.max(140, Math.min(420, n));
+  }
+
   function resize() {
     var rect = canvas.getBoundingClientRect();
     w = canvas.width = rect.width;
@@ -21,9 +31,8 @@
     jetY = h * 0.38;
     jetR = Math.min(w, h) * 0.22;
     mouseR = Math.min(w, h) * 0.32;
+    initParticles();
   }
-  resize();
-  window.addEventListener('resize', resize);
 
   canvas.addEventListener('mousemove', function (e) {
     var rect = canvas.getBoundingClientRect();
@@ -65,12 +74,18 @@
     return Math.atan2(by, bx);
   }
 
-  var N = 200;
   var HIST = 40;
   var particles = [];
-  for (var i = 0; i < N; i++) {
-    particles.push({ x: Math.random() * w, y: Math.random() * h, life: 90 + Math.random() * 180, history: [] });
+  function initParticles() {
+    var n = particleCountFor(w * h);
+    particles = [];
+    for (var i = 0; i < n; i++) {
+      particles.push({ x: Math.random() * w, y: Math.random() * h, life: 90 + Math.random() * 180, history: [] });
+    }
   }
+
+  resize();
+  window.addEventListener('resize', resize);
 
   var t = 0;
   function step() {
