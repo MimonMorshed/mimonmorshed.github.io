@@ -7,16 +7,29 @@
   var ctx = canvas.getContext('2d');
   var w, h, bgGrad, jetX, jetY, jetR, mouseR;
   var mouseX = null, mouseY = null;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Density tuned against a ~648x380 preview (200 particles felt right there).
-  // Scaled by sqrt(area) rather than linearly, so a huge monitor gets denser
-  // coverage without the particle count (and render cost) exploding 4-5x.
-  var BASE_AREA = 648 * 380;
-  var BASE_N = 200;
-  function particleCountFor(area) {
-    var n = Math.round(BASE_N * Math.sqrt(area / BASE_AREA));
-    return Math.max(140, Math.min(420, n));
+  // Particle count by viewport width, straight-line interpolated between
+  // points, flat at the last value beyond 3440px. Edit this table directly
+  // to retune, no formula to reverse-engineer.
+  var DENSITY_BREAKPOINTS = [
+    [380, 157],
+    [768, 223],
+    [1440, 350],
+    [1920, 400],
+    [2560, 450],
+    [3440, 500]
+  ];
+  function particleCountFor(width) {
+    var pts = DENSITY_BREAKPOINTS;
+    if (width <= pts[0][0]) return pts[0][1];
+    for (var i = 1; i < pts.length; i++) {
+      if (width <= pts[i][0]) {
+        var a = pts[i - 1], b = pts[i];
+        var t = (width - a[0]) / (b[0] - a[0]);
+        return Math.round(a[1] + t * (b[1] - a[1]));
+      }
+    }
+    return pts[pts.length - 1][1];
   }
 
   function resize() {
@@ -77,7 +90,7 @@
   var HIST = 40;
   var particles = [];
   function initParticles() {
-    var n = particleCountFor(w * h);
+    var n = particleCountFor(w);
     particles = [];
     for (var i = 0; i < n; i++) {
       particles.push({ x: Math.random() * w, y: Math.random() * h, life: 90 + Math.random() * 180, history: [] });
@@ -135,5 +148,5 @@
 
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, w, h);
-  if (!reduceMotion) step();
+  step();
 })();
