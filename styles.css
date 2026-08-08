@@ -1,139 +1,109 @@
-// Hero current flow-field animation.
-// Guarded so this file can be shared across pages that don't have #heroCanvas.
-(function () {
-  var canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
+:root {
+  --bg: #0B1F3A;
+  --hero-grad: linear-gradient(135deg, #05182D 0%, #0D3A60 50%, #1C6FA8 100%);
+  --surface: #132C4A;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.18);
+  --text-heading: #FFFFFF;
+  --text-body: #CFE3F5;
+  --text-muted: #7C93AC;
+  --accent-gold: #E8C97E;
+  --accent-blue: #9FD8FF;
+  --pill-blue-bg: rgba(159,216,255,0.15);
+  --pill-blue-border: rgba(159,216,255,0.3);
+  --pill-gold-bg: rgba(232,201,126,0.15);
+  --pill-gold-border: rgba(232,201,126,0.3);
+  --pill-neutral-bg: rgba(184,203,222,0.12);
+  --pill-neutral-border: rgba(184,203,222,0.25);
+  --tag-border: rgba(255,255,255,0.15);
+}
 
-  var ctx = canvas.getContext('2d');
-  var w, h, bgGrad, jetX, jetY, jetR, mouseR;
-  var mouseX = null, mouseY = null;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+* { box-sizing: border-box; }
 
-  // Density tuned against a ~648x380 preview (200 particles felt right there).
-  // Scaled by sqrt(area) rather than linearly, so a huge monitor gets denser
-  // coverage without the particle count (and render cost) exploding 4-5x.
-  var BASE_AREA = 648 * 380;
-  var BASE_N = 200;
-  function particleCountFor(area) {
-    var n = Math.round(BASE_N * Math.sqrt(area / BASE_AREA));
-    return Math.max(140, Math.min(420, n));
-  }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
-  function resize() {
-    var rect = canvas.getBoundingClientRect();
-    w = canvas.width = rect.width;
-    h = canvas.height = rect.height;
-    bgGrad = ctx.createLinearGradient(0, 0, w, h);
-    bgGrad.addColorStop(0, '#05182D');
-    bgGrad.addColorStop(0.5, '#0D3A60');
-    bgGrad.addColorStop(1, '#1C6FA8');
-    jetX = w * 0.62;
-    jetY = h * 0.38;
-    jetR = Math.min(w, h) * 0.22;
-    mouseR = Math.min(w, h) * 0.32;
-    initParticles();
-  }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
 
-  canvas.addEventListener('mousemove', function (e) {
-    var rect = canvas.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
-  });
-  canvas.addEventListener('mouseleave', function () { mouseX = null; mouseY = null; });
-  canvas.addEventListener('touchmove', function (e) {
-    if (e.touches && e.touches[0]) {
-      var rect = canvas.getBoundingClientRect();
-      mouseX = e.touches[0].clientX - rect.left;
-      mouseY = e.touches[0].clientY - rect.top;
-    }
-  }, { passive: true });
-  canvas.addEventListener('touchend', function () { mouseX = null; mouseY = null; });
+/* Navbar */
+.site-nav { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 0.5px solid var(--border); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-brand { color: var(--text-heading); font-weight: 700; letter-spacing: 0.05em; font-size: 14px; text-decoration: none; }
+.nav-links { display: flex; gap: 26px; }
+.nav-link { color: var(--text-body); font-size: 13px; text-decoration: none; transition: color 0.2s ease; }
+.nav-link:hover { color: var(--text-heading); }
+.nav-link.current { color: var(--text-heading); }
 
-  function speedAt(x, y) {
-    var dx = x - jetX, dy = y - jetY;
-    var jet = Math.exp(-(dx * dx + dy * dy) / (2 * jetR * jetR));
-    var s = 0.16 + jet * 0.85;
-    if (mouseX !== null) {
-      var mdx = x - mouseX, mdy = y - mouseY;
-      var md = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (md < mouseR) s += (1 - md / mouseR) * 0.6;
-    }
-    return s;
-  }
-  function angleAt(x, y, t) {
-    var nx = x / w, ny = y / h;
-    var base = Math.sin(nx * 3 + t * 0.3) * Math.cos(ny * 2.5 - t * 0.2) * Math.PI + Math.sin(ny * 4 - t * 0.15) * 0.6;
-    if (mouseX === null) return base;
-    var dx = x - mouseX, dy = y - mouseY;
-    var d = Math.sqrt(dx * dx + dy * dy);
-    if (d >= mouseR) return base;
-    var falloff = 1 - d / mouseR;
-    var tangent = Math.atan2(dy, dx) + Math.PI / 2;
-    var bx = Math.cos(base) * (1 - falloff) + Math.cos(tangent) * falloff;
-    var by = Math.sin(base) * (1 - falloff) + Math.sin(tangent) * falloff;
-    return Math.atan2(by, bx);
-  }
+/* Hero */
+.hero { position: relative; padding: 64px 0 80px; background: var(--hero-grad); overflow: hidden; }
+.hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-content { position: relative; z-index: 2; max-width: 520px; pointer-events: none; }
+.kicker { font-style: italic; font-size: 14px; letter-spacing: 0.04em; color: var(--accent-gold); margin: 0 0 12px; }
+.hero-name { font-size: clamp(28px, 5vw, 42px); font-weight: 600; color: var(--text-heading); margin: 0 0 14px; line-height: 1.15; }
+.hero-tagline { font-size: 15px; color: var(--text-body); line-height: 1.6; margin: 0; max-width: 460px; }
 
-  var HIST = 40;
-  var particles = [];
-  function initParticles() {
-    var n = particleCountFor(w * h);
-    particles = [];
-    for (var i = 0; i < n; i++) {
-      particles.push({ x: Math.random() * w, y: Math.random() * h, life: 90 + Math.random() * 180, history: [] });
-    }
-  }
+/* Intro */
+.intro { padding: 48px 0 8px; }
+.intro-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.intro-text { flex: 1 1 320px; min-width: 260px; }
+.intro-text p { margin: 0; font-size: 15px; line-height: 1.75; color: var(--text-body); max-width: 720px; }
+.intro-facts { margin: 28px 0 0; font-size: 12px; font-style: italic; letter-spacing: 0.04em; line-height: 1.8; color: var(--text-muted); }
+.intro-photo {
+  flex: 0 0 138px; width: 138px; height: 172px;
+  background: var(--surface); border: 0.5px solid var(--border-strong);
+  clip-path: url(#photoWave);
+  overflow: hidden;
+}
+.intro-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  resize();
-  window.addEventListener('resize', resize);
+.section-label { font-style: italic; font-size: 13px; letter-spacing: 0.04em; color: var(--accent-gold); margin: 36px 0 6px; }
+.section-title { font-size: 22px; font-weight: 600; color: var(--text-heading); margin: 0 0 22px; }
 
-  var t = 0;
-  function step() {
-    t += 1;
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, w, h);
+/* Recent work */
+.work { padding: 10px 0 60px; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      var spd = speedAt(p.x, p.y);
-      var a = angleAt(p.x, p.y, t * 0.012);
-      var stepLen = 0.45 + spd * 1.5;
-      var nx = p.x + Math.cos(a) * stepLen;
-      var ny = p.y + Math.sin(a) * stepLen;
-      p.history.push({ x: nx, y: ny, spd: spd });
-      if (p.history.length > HIST) p.history.shift();
-      p.x = nx; p.y = ny;
-      p.life -= 1;
+.card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; overflow: hidden; transition: border-color 0.3s ease; }
+.card:hover { border-color: var(--border-strong); }
+.card-row { display: flex; align-items: flex-start; }
+.card-body { flex: 1 1 auto; min-width: 0; }
+.pill { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; border: 0.5px solid; }
+.pill-gold { background: var(--pill-gold-bg); color: var(--accent-gold); border-color: var(--pill-gold-border); }
+.pill-blue { background: var(--pill-blue-bg); color: var(--accent-blue); border-color: var(--pill-blue-border); }
+.pill-neutral { background: var(--pill-neutral-bg); color: var(--text-muted); border-color: var(--pill-neutral-border); }
+.card-title { font-size: 15px; font-weight: 600; color: var(--text-heading); line-height: 1.4; margin: 0 0 10px; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 11px; color: var(--text-body); border: 0.5px solid var(--tag-border); border-radius: 999px; padding: 3px 9px; }
+.card-fig {
+  flex: 0 0 auto; width: 0; opacity: 0; overflow: hidden; transform: translateX(14px); margin-left: 0;
+  transition: width 0.35s ease, opacity 0.35s ease, transform 0.35s ease, margin-left 0.35s ease;
+}
+.card:hover .card-fig { width: 60px; opacity: 1; transform: translateX(0); margin-left: 12px; }
 
-      var hist = p.history;
-      for (var j = 1; j < hist.length; j++) {
-        var frac = j / (hist.length - 1);
-        var pt0 = hist[j - 1], pt1 = hist[j];
-        var mix = Math.min(1, pt1.spd);
-        var r = Math.round(120 + mix * 135);
-        var g = Math.round(165 + mix * 90);
-        var b = Math.round(210 + mix * 45);
-        var alpha = 0.04 + frac * (0.2 + mix * 0.35);
-        ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 0.3 + frac * (0.7 + mix * 1);
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(pt0.x, pt0.y);
-        ctx.lineTo(pt1.x, pt1.y);
-        ctx.stroke();
-      }
+.view-all { display: inline-block; margin-top: 22px; font-size: 13px; color: var(--accent-blue); text-decoration: none; transition: color 0.2s ease; }
+.view-all:hover { color: var(--text-heading); }
 
-      if (p.life <= 0 || p.x < 0 || p.x > w || p.y < 0 || p.y > h) {
-        p.x = Math.random() * w;
-        p.y = Math.random() * h;
-        p.life = 90 + Math.random() * 180;
-        p.history = [];
-      }
-    }
-    requestAnimationFrame(step);
-  }
+/* Footer */
+.site-footer { padding: 32px 0 44px; border-top: 0.5px solid var(--border); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-name { font-size: 13px; color: var(--text-muted); }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-links a { color: var(--text-body); font-size: 13px; text-decoration: none; transition: color 0.2s ease; }
+.footer-links a:hover { color: var(--text-heading); }
 
-  ctx.fillStyle = bgGrad;
-  ctx.fillRect(0, 0, w, h);
-  if (!reduceMotion) step();
-})();
+@media (max-width: 640px) {
+  .container { padding: 0 24px; }
+  .intro-row { flex-direction: column; align-items: flex-start; }
+  .nav-links { gap: 16px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* No display:none override here on purpose: script.js already checks
+   prefers-reduced-motion itself and skips the animation loop while still
+   painting one static gradient frame, so reduced-motion visitors get the
+   same calm background, just without the moving particles, rather than
+   the canvas vanishing outright. */
