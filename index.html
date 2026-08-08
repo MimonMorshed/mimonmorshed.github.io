@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  // Runs before CSS/paint so a saved light-theme choice doesn't flash dark first.
+  try {
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  } catch (e) {}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mimon Morsheduzzaman &middot; Physical Oceanography</title>
 <link rel="stylesheet" href="/styles.css">
@@ -19,13 +26,18 @@
   Projects index itself should eventually be projects/index.html so "/projects"
   resolves the same way "/" resolves to the root index.html.
 
+  Theme toggle: default is dark (no data-theme attribute needed on <html>).
+  Light theme lives in styles.css under [data-theme="light"], and the actual
+  toggle button + persistence logic is in script.js. The inline snippet
+  above only handles the very first paint, script.js takes over from there.
+
   Still open / placeholder:
   - Google Scholar link below points to "#", swap in the real URL when ready.
   - about.html, projects.html (or projects/index.html), publications.html,
     and contact.html don't exist yet, so those nav links 404 until built.
   - Typography still on a system font stack, not yet re-decided.
-  - Mobile-specific animation scaling (lighter particle count on small
-    screens) not yet implemented.
+  - Light theme colors are a first pass (white / black / one blue accent),
+    expect these to get refined further.
 -->
 </head>
 <body>
@@ -46,6 +58,11 @@
       <a href="/projects" class="nav-link">Projects</a>
       <a href="/publications" class="nav-link">Publications</a>
       <a href="/contact" class="nav-link">Contact</a>
+      <button id="themeToggle" class="theme-slider" type="button" aria-label="Switch between light and dark theme">
+        <svg class="ts-icon ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="ts-icon ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="ts-thumb"></span>
+      </button>
     </div>
   </div>
 </nav>
