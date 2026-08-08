@@ -5,7 +5,7 @@
   if (!canvas) return;
 
   var ctx = canvas.getContext('2d');
-  var w, h, bgGrad, jetX, jetY, jetR, mouseR;
+  var w, h, bgGrad, jetX, jetY, jetR, mouseR, motionScale;
   var mouseX = null, mouseY = null;
 
   // Particle count by viewport width, straight-line interpolated between
@@ -32,6 +32,13 @@
     return pts[pts.length - 1][1];
   }
 
+  // Speed and stroke width get a modest boost on wider screens too, capped
+  // at 1.3x so it stays "a little," not a different-feeling animation.
+  function motionScaleFor(width) {
+    var t = Math.max(0, Math.min(1, (width - 768) / (3440 - 768)));
+    return 1 + t * 0.3;
+  }
+
   function resize() {
     var rect = canvas.getBoundingClientRect();
     w = canvas.width = rect.width;
@@ -44,6 +51,7 @@
     jetY = h * 0.38;
     jetR = Math.min(w, h) * 0.22;
     mouseR = Math.min(w, h) * 0.32;
+    motionScale = motionScaleFor(w);
     initParticles();
   }
 
@@ -110,7 +118,7 @@
       var p = particles[i];
       var spd = speedAt(p.x, p.y);
       var a = angleAt(p.x, p.y, t * 0.012);
-      var stepLen = 0.45 + spd * 1.5;
+      var stepLen = (0.45 + spd * 1.5) * motionScale;
       var nx = p.x + Math.cos(a) * stepLen;
       var ny = p.y + Math.sin(a) * stepLen;
       p.history.push({ x: nx, y: ny, spd: spd });
@@ -128,7 +136,7 @@
         var b = Math.round(210 + mix * 45);
         var alpha = 0.04 + frac * (0.2 + mix * 0.35);
         ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 0.3 + frac * (0.7 + mix * 1);
+        ctx.lineWidth = (0.3 + frac * (0.7 + mix * 1)) * motionScale;
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(pt0.x, pt0.y);
