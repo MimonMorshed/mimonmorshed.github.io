@@ -5,8 +5,21 @@
   if (!canvas) return;
 
   var ctx = canvas.getContext('2d');
-  var w, h, bgGrad, jetX, jetY, jetR, mouseR, motionScale;
+  var w, h, bgGrad, jetX, jetY, jetR, mouseR, motionScale, palette;
   var mouseX = null, mouseY = null;
+
+  // Color palette per theme. "slow"/"fast" are the two ends of the
+  // per-particle color ramp (speedAt() decides where a given point falls
+  // between them). Dark ramps toward white at speed, light ramps toward a
+  // richer blue instead, since brightening further isn't possible on white.
+  var PALETTES = {
+    dark: { grad: ['#05182D', '#0D3A60', '#1C6FA8'], slow: [120, 165, 210], fast: [255, 255, 255], alphaMul: 1 },
+    light: { grad: ['#FFFFFF', '#FFFFFF', '#FFFFFF'], slow: [147, 181, 227], fast: [30, 58, 158], alphaMul: 1.4 }
+  };
+  function currentPalette() {
+    var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    return PALETTES[theme] || PALETTES.dark;
+  }
 
   // Particle count by viewport width, straight-line interpolated between
   // points, flat at the last value beyond 3440px. Edit this table directly
@@ -39,14 +52,19 @@
     return 1 + t * 0.3;
   }
 
+  function applyPalette() {
+    palette = currentPalette();
+    bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    bgGrad.addColorStop(0, palette.grad[0]);
+    bgGrad.addColorStop(0.5, palette.grad[1]);
+    bgGrad.addColorStop(1, palette.grad[2]);
+  }
+
   function resize() {
     var rect = canvas.getBoundingClientRect();
     w = canvas.width = rect.width;
     h = canvas.height = rect.height;
-    bgGrad = ctx.createLinearGradient(0, 0, w, h);
-    bgGrad.addColorStop(0, '#05182D');
-    bgGrad.addColorStop(0.5, '#0D3A60');
-    bgGrad.addColorStop(1, '#1C6FA8');
+    applyPalette();
     jetX = w * 0.62;
     jetY = h * 0.38;
     jetR = Math.min(w, h) * 0.22;
@@ -54,6 +72,12 @@
     motionScale = motionScaleFor(w);
     initParticles();
   }
+
+  // Theme toggle (script.js's other half, see bottom of file) dispatches
+  // this on <html> when the theme changes. Repaint the gradient and swap
+  // the color ramp immediately, but don't touch particle positions, no
+  // reason to reset the flow field just because the palette changed.
+  document.documentElement.addEventListener('themechange', applyPalette);
 
   canvas.addEventListener('mousemove', function (e) {
     var rect = canvas.getBoundingClientRect();
@@ -131,10 +155,10 @@
         var frac = j / (hist.length - 1);
         var pt0 = hist[j - 1], pt1 = hist[j];
         var mix = Math.min(1, pt1.spd);
-        var r = Math.round(120 + mix * 135);
-        var g = Math.round(165 + mix * 90);
-        var b = Math.round(210 + mix * 45);
-        var alpha = 0.04 + frac * (0.2 + mix * 0.35);
+        var r = Math.round(palette.slow[0] + mix * (palette.fast[0] - palette.slow[0]));
+        var g = Math.round(palette.slow[1] + mix * (palette.fast[1] - palette.slow[1]));
+        var b = Math.round(palette.slow[2] + mix * (palette.fast[2] - palette.slow[2]));
+        var alpha = Math.min(1, (0.04 + frac * (0.2 + mix * 0.35)) * palette.alphaMul);
         ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
         ctx.lineWidth = (0.3 + frac * (0.7 + mix * 1)) * motionScale;
         ctx.lineCap = 'round';
@@ -157,4 +181,25 @@
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, w, h);
   step();
+})();
+
+// Light/dark theme toggle. Runs on every page (not guarded by heroCanvas),
+// since the toggle button lives in the shared nav. Persists to localStorage
+// and fires "themechange" on <html> so the hero animation above can react
+// without a reload.
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    if (next === 'dark') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', next);
+    }
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    root.dispatchEvent(new CustomEvent('themechange'));
+  });
 })();
